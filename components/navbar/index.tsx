@@ -15,7 +15,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { data, status } = useSession();
-
   return (
     <div className="w-full px-2 flex md:grid md:grid-cols-4 md:px-6 py-3">
       <div className="w-full flex items-center justify-start sm:hidden">
