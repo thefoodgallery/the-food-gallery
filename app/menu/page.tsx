@@ -13,7 +13,10 @@ const MenuPage = () => {
                 <p className="lg:text-3xl md:text-xl text-lg font-bold md:ml-5 mb-2 ">
                   {category.category}
                 </p>
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                <div
+                  key={`${i + 1}`}
+                  className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2"
+                >
                   {category.items.map((item, i) => {
                     return (
                       <div

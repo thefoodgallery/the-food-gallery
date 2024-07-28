@@ -18,6 +18,7 @@ export default function RootLayout({
   useEffect(() => {
     if (typeof window !== "undefined") {
       import("flowbite").then((module) => module.initFlowbite());
+      import("flowbite").then((module) => module.initDropdowns());
     }
   }, []);
 
