@@ -23,6 +23,7 @@ const handler: NextApiHandler = (req, res) =>
             const newUser = new User({
               email: user.email,
               name: user.name,
+              profilePicture: user.image,
             });
             await newUser.save();
           }

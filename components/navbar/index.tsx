@@ -74,6 +74,15 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <Utensils size={20} />
+                  <span className="ms-3">Menu</span>
+                </a>
+              </li>
+              {/* <li>
                 <button
                   type="button"
                   className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -126,7 +135,7 @@ const Navbar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li>
                 <a
                   href="#"
@@ -264,7 +273,7 @@ const Navbar = () => {
                     signOut();
                   }}
                   type="button"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out
                 </a>
@@ -364,7 +373,7 @@ const Navbar = () => {
                     signOut();
                   }}
                   type="button"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out
                 </a>

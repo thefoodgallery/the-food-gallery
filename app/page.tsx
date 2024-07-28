@@ -11,32 +11,6 @@ const philosopher = Philosopher({
 export default function Home() {
   return (
     <>
-      <div className="w-full hidden md:flex items-center md:space-x-8 lg:space-x-16 justify-center mt-3">
-        <Link className="md:text-sm lg:text-xl font-bold" href={"/"}>
-          HOME
-        </Link>
-        <Link className="tmd:text-sm lg:text-xl font-bold" href={"/menu"}>
-          MENU
-        </Link>
-        <Link
-          className="tmd:text-sm lg:text-xl font-bold"
-          href={"/order-online"}
-        >
-          ORDER
-        </Link>
-        <Link className="tmd:text-sm lg:text-xl font-bold" href={"/blogs"}>
-          BLOGS
-        </Link>
-        <Link className="tmd:text-sm lg:text-xl font-bold" href={"/about"}>
-          ABOUT US
-        </Link>
-        <Link
-          className="tmd:text-sm lg:text-xl font-bold"
-          href={"/testimonals"}
-        >
-          TESTIMONALS
-        </Link>
-      </div>
       <div className="p-2 md:p-4 lg:p-8">
         <video
           autoPlay
