@@ -4,6 +4,7 @@ interface IUser extends Document {
   name: string;
   email: string;
   profilePicture?: string;
+  phone: string;
 }
 
 const UserSchema: Schema<IUser> = new Schema({
@@ -23,6 +24,9 @@ const UserSchema: Schema<IUser> = new Schema({
   profilePicture: {
     type: String,
     default: "/images/profiles/default-profile.jpg",
+  },
+  phone: {
+    type: String,
   },
 });
 
