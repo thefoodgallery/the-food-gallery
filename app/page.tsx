@@ -121,7 +121,7 @@ export default function Home() {
           <img src="/images/assets/buffet.jpg" alt="" />
         </div>
       </div>
-      <div className="w-full flex justify-center">
+      {/* <div className="w-full flex justify-center">
         <button
           id="dropdownDefaultButton"
           data-dropdown-toggle="dropdown"
@@ -140,7 +140,7 @@ export default function Home() {
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
+              strokeWidth="2"
               d="m1 1 4 4 4-4"
             />
           </svg>
@@ -188,7 +188,7 @@ export default function Home() {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

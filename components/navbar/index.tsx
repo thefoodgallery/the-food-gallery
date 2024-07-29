@@ -167,15 +167,19 @@ const Navbar = () => {
           </div>
         ) : status === "authenticated" ? (
           <>
-            <img
-              id="avatarButtonMobile"
-              // type="button"
+            <button
+              type="button"
               data-dropdown-toggle="userDropdownMobile"
               data-dropdown-placement="bottom-start"
+              id="avatarButtonMobile"
               className="w-8 h-8 rounded-full cursor-pointer"
-              src={data.user?.image || "/images/profiles/default-profile.jpg"}
-              alt="User dropdown"
-            />
+            >
+              <img
+                className="w-full h-full rounded-full cursor-pointer"
+                src={data.user?.image || "/images/profiles/default-profile.jpg"}
+                alt="User dropdown"
+              />
+            </button>
 
             <div
               id="userDropdownMobile"
@@ -267,15 +271,19 @@ const Navbar = () => {
           </div>
         ) : status === "authenticated" ? (
           <>
-            <img
+            <button
+              type="button"
               id="avatarButton"
-              // type="button"
               data-dropdown-toggle="userDropdown"
               data-dropdown-placement="bottom-start"
               className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
-              src={data.user?.image || "/images/profiles/default-profile.jpg"}
-              alt="User dropdown"
-            />
+            >
+              <img
+                className="w-full h-full rounded-full cursor-pointer"
+                src={data.user?.image || "/images/profiles/default-profile.jpg"}
+                alt="User dropdown"
+              />
+            </button>
 
             <div
               id="userDropdown"
