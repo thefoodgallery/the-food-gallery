@@ -7,7 +7,6 @@ import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import SocialLinks from "@/components/social-links";
 import Link from "next/link";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -18,17 +17,6 @@ export default function RootLayout({
   useEffect(() => {
     if (typeof window !== "undefined") {
       import("flowbite").then((module) => module.initFlowbite());
-      import("flowbite").then((module) => module.initDropdowns());
-      import("flowbite").then((module) => module.initModals());
-      import("flowbite").then((module) => module.initTabs());
-      import("flowbite").then((module) => module.initTooltips());
-      import("flowbite").then((module) => module.initPopovers());
-      import("flowbite").then((module) => module.initAccordions());
-      import("flowbite").then((module) => module.initCarousels());
-      import("flowbite").then((module) => module.initCollapses());
-      import("flowbite").then((module) => module.initCollapses());
-      import("flowbite").then((module) => module.initDials());
-      import("flowbite").then((module) => module.initDatepickers());
     }
   }, []);
 
