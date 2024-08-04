@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import {
   Home,
+  LogOut,
   Menu,
   MessageSquareCode,
   Phone,
@@ -114,12 +115,26 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  type="button"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <Phone size={20} />
                   <span className="flex-1 ms-3 whitespace-nowrap">
                     +1 3142609407
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  type="button"
+                  onClick={() => {
+                    signOut();
+                  }}
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <LogOut size={20} />
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    Sign Out
                   </span>
                 </a>
               </li>
