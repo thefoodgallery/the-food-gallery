@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "flowbite": "^2.4.1",
     "framer-motion": "^11.3.8",
     "lucide-react": "^0.411.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
+    "preline": "^2.4.1",
     "react": "^18",
     "react-dom": "^18"
   },
