@@ -43,8 +43,8 @@ const Navbar = () => {
           </h5>
           <button
             type="button"
-            data-drawer-hide="drawer-navigation"
-            aria-controls="drawer-navigation"
+            aria-label="Close"
+            data-hs-overlay="#hs-offcanvas-example"
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center "
           >
             <svg
@@ -156,57 +156,62 @@ const Navbar = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : status === "authenticated" ? (
-          <div className="hs-tooltip [--trigger:click] [--placement:bottom] inline-block">
+          <div className="hs-dropdown relative inline-flex">
             <button
+              id="hs-dropdown-default"
               type="button"
-              className="hs-tooltip-toggle w-8 h-8 rounded-full cursor-pointer"
+              className="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-label="Dropdown"
             >
-              <img
-                className="w-full h-full rounded-full cursor-pointer"
-                src={data.user?.image || "/images/profiles/default-profile.jpg"}
-                alt="User dropdown"
-              />
+              {data.user?.name}
+              <svg
+                className="hs-dropdown-open:rotate-180 size-4"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </button>
 
             <div
-              className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity opacity-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
-              role="tooltip"
+              className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="hs-dropdown-default"
             >
-              <div className="px-4 py-3 text-sm text-gray-900">
-                <div>{data.user?.name}</div>
-                <div className="font-medium truncate">{data.user?.email}</div>
-              </div>
-              <ul
-                className="py-2 text-sm text-gray-700 "
-                aria-labelledby="avatarButton"
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
               >
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-                    Orders
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-                    Refer
-                  </a>
-                </li>
-              </ul>
-              <div className="py-1">
-                <a
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
-                >
-                  Sign out
-                </a>
-              </div>
+                Newsletter
+              </a>
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
+              >
+                Purchases
+              </a>
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
+              >
+                Downloads
+              </a>
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
+              >
+                Team Account
+              </a>
             </div>
           </div>
         ) : (
@@ -236,57 +241,62 @@ const Navbar = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : status === "authenticated" ? (
-          <div className="hs-tooltip [--trigger:click] [--placement:bottom] inline-block">
+          <div className="hs-dropdown relative inline-flex">
             <button
+              id="hs-dropdown-default"
               type="button"
-              className="hs-tooltip-toggle md:w-10 md:h-10 w-12 h-12 lg:h-12 lg:w-12 rounded-full cursor-pointer"
+              className="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-label="Dropdown"
             >
-              <img
-                className="w-full h-full rounded-full cursor-pointer"
-                src={data.user?.image || "/images/profiles/default-profile.jpg"}
-                alt="User dropdown"
-              />
+              {data.user?.name}
+              <svg
+                className="hs-dropdown-open:rotate-180 size-4"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </button>
 
             <div
-              role="tooltip"
-              className="hs-tooltip-content hs-tooltip-shown:opacity-100 border border-gray-200 hs-tooltip-shown:visible transition-opacity opacity-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mr-5"
+              className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="hs-dropdown-default"
             >
-              <div className="px-4 py-3 text-sm text-gray-900">
-                <div>{data.user?.name}</div>
-                <div className="font-medium truncate">{data.user?.email}</div>
-              </div>
-              <ul
-                className="py-2 text-sm text-gray-700 "
-                aria-labelledby="avatarButton"
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
               >
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-                    Orders
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
-                    Refer
-                  </a>
-                </li>
-              </ul>
-              <div className="py-1">
-                <a
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  Sign out
-                </a>
-              </div>
+                Newsletter
+              </a>
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
+              >
+                Purchases
+              </a>
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
+              >
+                Downloads
+              </a>
+              <a
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                type="button"
+              >
+                Team Account
+              </a>
             </div>
           </div>
         ) : (
