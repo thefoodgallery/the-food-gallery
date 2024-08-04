@@ -221,12 +221,12 @@ const Navbar = () => {
         )}
       </div>
       <div className="hidden justify-end items-center md:flex md:space-x-4 md:col-span-1">
-        <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
+        {/* <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
           <Search size={20} />
         </button>
         <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
           <ShoppingCart size={20} />
-        </button>
+        </button> */}
         {status === "loading" ? (
           <div
             className="animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full "
@@ -239,7 +239,7 @@ const Navbar = () => {
           <div className="hs-tooltip [--trigger:click] [--placement:bottom] inline-block">
             <button
               type="button"
-              className="hs-tooltip-toggle md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
+              className="hs-tooltip-toggle md:w-10 md:h-10 w-12 h-12 lg:h-12 lg:w-12 rounded-full cursor-pointer"
             >
               <img
                 className="w-full h-full rounded-full cursor-pointer"
@@ -250,7 +250,7 @@ const Navbar = () => {
 
             <div
               role="tooltip"
-              className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity opacity-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+              className="hs-tooltip-content hs-tooltip-shown:opacity-100 border border-gray-200 hs-tooltip-shown:visible transition-opacity opacity-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
             >
               <div className="px-4 py-3 text-sm text-gray-900">
                 <div>{data.user?.name}</div>
