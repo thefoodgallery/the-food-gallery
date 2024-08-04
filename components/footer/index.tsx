@@ -1,13 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import React from "react";
 import FaceBookIcon from "@/public/svg/facebook-svgrepo-com.svg";
 import InstagramIcon from "@/public/svg/instagram-svgrepo-com.svg";
 import TwitterIcon from "@/public/svg/twitter-svgrepo-com.svg";
 import YoutubeIcon from "@/public/svg/youtube-circle-logo-svgrepo-com.svg";
+import { usePathname } from "next/navigation";
 
 const PageFooter = () => {
+  const path = usePathname();
+
   return (
-    <footer className="bg-white dark:bg-gray-900 mb-20">
+    <footer
+      className={`bg-white dark:bg-gray-900 ${
+        path.includes("menu") && "mb-20"
+      }`}
+    >
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
