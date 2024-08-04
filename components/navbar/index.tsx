@@ -173,15 +173,23 @@ const Navbar = () => {
               data-dropdown-placement="bottom-start"
               id="avatarButtonMobile"
               className="w-8 h-8 rounded-full cursor-pointer"
+              style={{
+                backgroundImage: `url(${
+                  data.user?.image || "/images/profiles/default-profile.jpg"
+                })`,
+                backgroundSize: "cover", // Ensures the image covers the entire button
+                backgroundPosition: "center", // Centers the image within the button
+                backgroundRepeat: "no-repeat", // Prevents the image from repeating
+              }}
             >
-              <img
+              {/* <img
                 // type="button"
                 data-dropdown-toggle="userDropdownMobile"
                 data-dropdown-placement="bottom-start"
                 className="w-full h-full rounded-full cursor-pointer"
                 src={data.user?.image || "/images/profiles/default-profile.jpg"}
                 alt="User dropdown"
-              />
+              /> */}
             </button>
 
             <div
@@ -280,15 +288,23 @@ const Navbar = () => {
               data-dropdown-toggle="userDropdown"
               data-dropdown-placement="bottom-start"
               className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
+              style={{
+                backgroundImage: `url(${
+                  data.user?.image || "/images/profiles/default-profile.jpg"
+                })`,
+                backgroundSize: "cover", // Ensures the image covers the entire button
+                backgroundPosition: "center", // Centers the image within the button
+                backgroundRepeat: "no-repeat", // Prevents the image from repeating
+              }}
             >
-              <img
+              {/* <img
                 // type="button"
                 data-dropdown-toggle="userDropdownMobile"
                 data-dropdown-placement="bottom-start"
                 className="w-full h-full rounded-full cursor-pointer"
                 src={data.user?.image || "/images/profiles/default-profile.jpg"}
                 alt="User dropdown"
-              />
+              /> */}
             </button>
 
             <div
