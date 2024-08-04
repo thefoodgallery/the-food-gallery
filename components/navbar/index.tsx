@@ -127,17 +127,17 @@ const Navbar = () => {
                   </span>
                 </a>
               </li>
-              <li>
-                <a
-                  type="button"
-                  className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-                >
-                  <LogOut size={20} />
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    Sign Out
-                  </span>
-                </a>
-              </li>
+
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+                type="button"
+                className="flex w-full items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+              >
+                <LogOut size={20} />
+                <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+              </button>
             </ul>
           </div>
         </div>
@@ -236,17 +236,16 @@ const Navbar = () => {
                 </li>
               </ul>
               <hr />
-              <div className="py-2">
-                <a
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  className="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 "
-                >
-                  Sign out
-                </a>
-              </div>
+
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+                type="button"
+                className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+              >
+                Sign out
+              </button>
             </div>
           </div>
         ) : (
@@ -281,7 +280,7 @@ const Navbar = () => {
                 d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
               ></path>
             </svg>
-            <p className="text-xs">Continue With Google</p>
+            <p className="text-xs">Sign In</p>
           </button>
         )}
       </div>
@@ -363,17 +362,15 @@ const Navbar = () => {
                 </li>
               </ul>
               <hr />
-              <div className="py-2 px-2 cursor-pointer">
-                <a
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  className="block px-2 py-1 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
-                >
-                  Sign out
-                </a>
-              </div>
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+                type="button"
+                className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+              >
+                Sign out
+              </button>
             </div>
           </div>
         ) : (

@@ -63,8 +63,8 @@ export default function RootLayout({
           </main>
           <PageFooter />
         </SessionProvider>
+        <PrelineScript />
       </body>
-      <PrelineScript />
     </html>
   );
 }
