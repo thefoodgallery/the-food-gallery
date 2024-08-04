@@ -250,7 +250,7 @@ const Navbar = () => {
 
             <div
               role="tooltip"
-              className="hs-tooltip-content hs-tooltip-shown:opacity-100 border border-gray-200 hs-tooltip-shown:visible transition-opacity opacity-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+              className="hs-tooltip-content hs-tooltip-shown:opacity-100 border border-gray-200 hs-tooltip-shown:visible transition-opacity opacity-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mr-5"
             >
               <div className="px-4 py-3 text-sm text-gray-900">
                 <div>{data.user?.name}</div>
