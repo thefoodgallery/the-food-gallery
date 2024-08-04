@@ -172,24 +172,24 @@ const Navbar = () => {
               data-dropdown-toggle="userDropdownMobile"
               data-dropdown-placement="bottom-start"
               id="avatarButtonMobile"
-              className="w-8 h-8 rounded-full cursor-pointer"
-              style={{
-                backgroundImage: `url(${
-                  data.user?.image || "/images/profiles/default-profile.jpg"
-                })`,
-                backgroundSize: "cover", // Ensures the image covers the entire button
-                backgroundPosition: "center", // Centers the image within the button
-                backgroundRepeat: "no-repeat", // Prevents the image from repeating
-              }}
+              className="bg-black text-xs flex items-center space-x-2  rounded-md p-3 md:p-2 lg:p-3 text-white cursor-pointer"
             >
-              {/* <img
-                // type="button"
-                data-dropdown-toggle="userDropdownMobile"
-                data-dropdown-placement="bottom-start"
-                className="w-full h-full rounded-full cursor-pointer"
-                src={data.user?.image || "/images/profiles/default-profile.jpg"}
-                alt="User dropdown"
-              /> */}
+              {data.user?.name}{" "}
+              <svg
+                className="w-2.5 h-2.5 ms-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
             </button>
 
             <div
@@ -287,24 +287,24 @@ const Navbar = () => {
               id="avatarButton"
               data-dropdown-toggle="userDropdown"
               data-dropdown-placement="bottom-start"
-              className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
-              style={{
-                backgroundImage: `url(${
-                  data.user?.image || "/images/profiles/default-profile.jpg"
-                })`,
-                backgroundSize: "cover", // Ensures the image covers the entire button
-                backgroundPosition: "center", // Centers the image within the button
-                backgroundRepeat: "no-repeat", // Prevents the image from repeating
-              }}
+              className="bg-black rounded-md p-1 md:p-3 md:text-sm md:min-w-40 lg:p-3 text-white cursor-pointer flex items-center"
             >
-              {/* <img
-                // type="button"
-                data-dropdown-toggle="userDropdownMobile"
-                data-dropdown-placement="bottom-start"
-                className="w-full h-full rounded-full cursor-pointer"
-                src={data.user?.image || "/images/profiles/default-profile.jpg"}
-                alt="User dropdown"
-              /> */}
+              {data.user?.name}{" "}
+              <svg
+                className="w-2.5 h-2.5 ms-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
             </button>
 
             <div
