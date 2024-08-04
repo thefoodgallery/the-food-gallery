@@ -175,7 +175,7 @@ const Navbar = () => {
               className="w-8 h-8 rounded-full cursor-pointer"
             >
               <img
-                type="button"
+                // type="button"
                 data-dropdown-toggle="userDropdownMobile"
                 data-dropdown-placement="bottom-start"
                 className="w-full h-full rounded-full cursor-pointer"
@@ -282,7 +282,7 @@ const Navbar = () => {
               className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
             >
               <img
-                type="button"
+                // type="button"
                 data-dropdown-toggle="userDropdownMobile"
                 data-dropdown-placement="bottom-start"
                 className="w-full h-full rounded-full cursor-pointer"
