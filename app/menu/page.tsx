@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { constants } from "@/util/constants";
-import React from "react";
+import React, { Fragment } from "react";
 
 const MenuPage = () => {
   return (
@@ -8,7 +9,7 @@ const MenuPage = () => {
       <div className="w-full">
         {constants.menu.map((category, i) => {
           return (
-            <>
+            <Fragment key={i + 10}>
               <div key={i} className="w-full mb-5">
                 <p className="lg:text-3xl md:text-xl text-lg font-bold md:ml-5 mb-2 ">
                   {category.category}
@@ -20,7 +21,7 @@ const MenuPage = () => {
                   {category.items.map((item, i) => {
                     return (
                       <div
-                        key={i}
+                        key={i + 1}
                         className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow"
                       >
                         <img
@@ -89,7 +90,10 @@ const MenuPage = () => {
                             <span className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-900 dark:text-white">
                               ${item.price}
                             </span>
-                            <button className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center">
+                            <button
+                              onClick={() => {}}
+                              className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
+                            >
                               Add to cart
                             </button>
                           </div>
@@ -99,7 +103,7 @@ const MenuPage = () => {
                   })}
                 </div>
               </div>
-            </>
+            </Fragment>
           );
         })}
       </div>
