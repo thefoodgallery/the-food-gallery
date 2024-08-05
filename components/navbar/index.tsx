@@ -171,14 +171,14 @@ const Navbar = () => {
         ) : status === "authenticated" ? (
           <div className="hs-dropdown relative inline-flex">
             <button
-              id="hs-dropdown-default"
+              id="hs-dropdown-with-title"
               type="button"
-              className="hs-dropdown-toggle p-2 inline-flex items-center gap-x-2 text-sm rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+              className="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
               aria-haspopup="menu"
               aria-expanded="false"
               aria-label="Dropdown"
             >
-              {data.user?.name?.split(" ")[0]}
+              {data.user?.name}
               <svg
                 className="hs-dropdown-open:rotate-180 size-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -187,65 +187,128 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </button>
 
             <div
-              className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-32 max-w-52 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+              className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 divide-y divide-gray-200"
               role="menu"
               aria-orientation="vertical"
-              aria-labelledby="hs-dropdown-default"
+              aria-labelledby="hs-dropdown-with-title"
             >
-              <div className="px-4 py-3 text-sm text-gray-900">
-                <div>{data.user?.name}</div>
-                <div className="font-medium truncate">{data.user?.email}</div>
+              <div className="py-2 first:pt-0 last:pb-0">
+                <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
+                  Settings
+                </span>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                  </svg>
+                  Newsletter
+                </a>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                  </svg>
+                  Purchases
+                </a>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+                    <path d="M12 12v9" />
+                    <path d="m8 17 4 4 4-4" />
+                  </svg>
+                  Downloads
+                </a>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  Team Account
+                </a>
               </div>
-              <hr />
-              <ul
-                className="py-2 text-sm text-gray-700 "
-                aria-labelledby="dropdownUserAvatarButton"
-              >
-                <li>
-                  <a
-                    type="button"
-                    className="block px-2 py-1 hover:bg-gray-100 "
-                  >
-                    Your Orders
-                  </a>
-                </li>
-                <li>
-                  <a
-                    type="button"
-                    className="block px-2 py-1 hover:bg-gray-100 "
-                  >
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    type="button"
-                    className="block px-2 py-1 hover:bg-gray-100 "
-                  >
-                    Refer
-                  </a>
-                </li>
-              </ul>
-              <hr />
-
-              <button
-                onClick={() => {
-                  signOut();
-                }}
-                type="button"
-                className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 "
-              >
-                Sign out
-              </button>
+              <div className="py-2 first:pt-0 last:pb-0">
+                <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
+                  Account
+                </span>
+                <a
+                  onClick={() => {
+                    signOut();
+                  }}
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  type="button"
+                >
+                  <LogOut size={20} />
+                  <p>Contact support</p>
+                </a>
+              </div>
             </div>
           </div>
         ) : (
@@ -297,7 +360,7 @@ const Navbar = () => {
         ) : status === "authenticated" ? (
           <div className="hs-dropdown relative inline-flex">
             <button
-              id="hs-dropdown-default"
+              id="hs-dropdown-with-title"
               type="button"
               className="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
               aria-haspopup="menu"
@@ -313,64 +376,128 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </button>
 
             <div
-              className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 max-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+              className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 divide-y divide-gray-200"
               role="menu"
               aria-orientation="vertical"
-              aria-labelledby="hs-dropdown-default"
+              aria-labelledby="hs-dropdown-with-title"
             >
-              <div className="px-4 py-3 text-sm text-gray-900">
-                <div>{data.user?.name}</div>
-                <div className="font-medium truncate">{data.user?.email}</div>
+              <div className="py-2 first:pt-0 last:pb-0">
+                <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
+                  Settings
+                </span>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                  </svg>
+                  Newsletter
+                </a>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                  </svg>
+                  Purchases
+                </a>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+                    <path d="M12 12v9" />
+                    <path d="m8 17 4 4 4-4" />
+                  </svg>
+                  Downloads
+                </a>
+                <a
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  href="#"
+                >
+                  <svg
+                    className="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  Team Account
+                </a>
               </div>
-              <hr />
-              <ul
-                className="py-2 text-sm text-gray-700 "
-                aria-labelledby="dropdownUserAvatarButton"
-              >
-                <li>
-                  <a
-                    type="button"
-                    className="block px-2 py-2 hover:bg-gray-100 rounded-md cursor-pointer"
-                  >
-                    Your Orders
-                  </a>
-                </li>
-                <li>
-                  <a
-                    type="button"
-                    className="block px-2 py-2 hover:bg-gray-100 rounded-md cursor-pointer"
-                  >
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    type="button"
-                    className="block px-2 py-2 hover:bg-gray-100 rounded-md cursor-pointer"
-                  >
-                    Refer
-                  </a>
-                </li>
-              </ul>
-              <hr />
-              <button
-                onClick={() => {
-                  signOut();
-                }}
-                type="button"
-                className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 "
-              >
-                Sign out
-              </button>
+              <div className="py-2 first:pt-0 last:pb-0">
+                <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
+                  Account
+                </span>
+                <a
+                  onClick={() => {
+                    signOut();
+                  }}
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  type="button"
+                >
+                  <LogOut size={20} />
+                  <p>Contact support</p>
+                </a>
+              </div>
             </div>
           </div>
         ) : (

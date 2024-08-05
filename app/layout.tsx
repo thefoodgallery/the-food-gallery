@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import PageFooter from "@/components/footer";
 import { SessionProvider } from "next-auth/react";
-import { useEffect } from "react";
 import SocialLinks from "@/components/social-links";
 import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
@@ -63,8 +62,8 @@ export default function RootLayout({
           </main>
           <PageFooter />
         </SessionProvider>
-        <PrelineScript />
       </body>
+      <PrelineScript />
     </html>
   );
 }
