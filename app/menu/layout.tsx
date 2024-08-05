@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, ChevronUp, LogOut, X } from "lucide-react";
+import { ChevronDown, ChevronUp, LogOut, Receipt, X } from "lucide-react";
 import React, { useState } from "react";
 import { Drawer } from "flowbite-react";
 import { useStateContext } from "@/context/StateContext";
@@ -13,6 +13,10 @@ export default function MenuPageLayour({
   // console.log(selectedFood);
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
+
+  const total = selectedFood
+    .reduce((acc, item) => acc + item.price, 0)
+    .toFixed(2);
   return (
     <main>
       {children}
@@ -37,18 +41,8 @@ export default function MenuPageLayour({
             closeIcon={() => {
               return isOpen ? <ChevronDown /> : <ChevronUp />;
             }}
-            title="Items"
-            titleIcon={() => (
-              <svg
-                className="w-4 h-4 me-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 18 18"
-              >
-                <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10ZM17 13h-2v-2a1 1 0 0 0-2 0v2h-2a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2Z" />
-              </svg>
-            )}
+            title={`Total: $${total}`}
+            titleIcon={() => <Receipt />}
             onClick={() => setIsOpen(!isOpen)}
             className="cursor-pointer mb-0 px-4 pt-4 bg-gray-50 rounded-t-md hover:bg-gray-100 border-2 border-gray-200"
           />

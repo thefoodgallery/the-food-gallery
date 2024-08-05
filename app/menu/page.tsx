@@ -2,6 +2,7 @@
 "use client";
 import { useStateContext } from "@/context/StateContext";
 import { constants } from "@/util/constants";
+import { Minus, Plus } from "lucide-react";
 import React, { Fragment, useCallback } from "react";
 interface FoodOptions {
   name: string;
@@ -32,11 +33,27 @@ const MenuPage = () => {
     [selectedFood, setSelectedFood]
   );
 
+  // const handleRemoveItem = useCallback(
+  //   (food: FoodItem) => {
+  //     setSelectedFood(selectedFood.filter((fd) => fd.name !== food.name));
+  //   },
+  //   [selectedFood, setSelectedFood]
+  // );
   const handleRemoveItem = useCallback(
     (food: FoodItem) => {
-      setSelectedFood(selectedFood.filter((fd) => fd.name !== food.name));
+      setSelectedFood((prevSelectedFood) => {
+        const index = prevSelectedFood.findIndex(
+          (fd: FoodItem) => fd.name === food.name
+        );
+        if (index !== -1) {
+          const newSelectedFood = [...prevSelectedFood];
+          newSelectedFood.splice(index, 1);
+          return newSelectedFood;
+        }
+        return prevSelectedFood;
+      });
     },
-    [selectedFood, setSelectedFood]
+    [setSelectedFood]
   );
 
   return (
@@ -69,7 +86,7 @@ const MenuPage = () => {
                         className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow"
                       >
                         <img
-                          className=" md:p-4 p-2 object-cover h-40 md:h-60 lg:h-80 w-full rounded-md"
+                          className="md:p-4 p-2 object-cover h-40 md:h-60 lg:h-80 w-full rounded-md"
                           src={item.images[0].src}
                           alt="product image"
                         />
@@ -85,14 +102,31 @@ const MenuPage = () => {
                             {selectedFood.some(
                               (fd) => fd.name === item.name
                             ) ? (
-                              <button
-                                onClick={() => {
-                                  handleRemoveItem(item);
-                                }}
-                                className="text-white bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-700 font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
-                              >
-                                Remove
-                              </button>
+                              <div className="flex items-center">
+                                <button
+                                  onClick={() => {
+                                    handleRemoveItem(item);
+                                  }}
+                                  className="text-white bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-700 font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
+                                >
+                                  <Minus size={15} />
+                                </button>
+                                <div className="mx-2 text-gray-500 text-lg md:text-xl px-2 py-1 text-center">
+                                  {
+                                    selectedFood.filter(
+                                      (fd) => fd.name === item.name
+                                    ).length
+                                  }
+                                </div>
+                                <button
+                                  onClick={() => {
+                                    handleSelectFood(item);
+                                  }}
+                                  className="text-white bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-700 font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
+                                >
+                                  <Plus size={15} />
+                                </button>
+                              </div>
                             ) : (
                               <button
                                 onClick={() => {

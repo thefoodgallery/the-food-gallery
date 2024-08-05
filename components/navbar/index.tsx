@@ -307,12 +307,12 @@ const Navbar = () => {
         )}
       </div>
       <div className="hidden justify-end items-center md:flex md:space-x-4 md:col-span-1">
-        <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
+        {/* <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
           <Search size={20} />
         </button>
         <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
           <ShoppingCart size={20} />
-        </button>
+        </button> */}
         {status === "loading" ? (
           <div role="status">
             <svg
@@ -417,7 +417,7 @@ const Navbar = () => {
                 src={
                   data?.user?.image || "/images/profiles/default-profile.jpg"
                 }
-                className="md:h-10 md:w-10 lg:h-12 lg:w-12 rounded-full"
+                className="md:h-10 md:w-10 lg:h-12 lg:w-12 rounded-full cursor-pointer"
               />
             )}
             label={data?.user?.name}
