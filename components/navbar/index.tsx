@@ -260,7 +260,11 @@ const Navbar = () => {
           //   </div>
           //   </>
 
-          <Dropdown label={data?.user?.name} dismissOnClick={false}>
+          <Dropdown
+            className="text-xs p-2"
+            label={data?.user?.name}
+            dismissOnClick={false}
+          >
             <Dropdown.Item>Orders</Dropdown.Item>
             <Dropdown.Item>Settings</Dropdown.Item>
             <Dropdown.Item>Refer</Dropdown.Item>
