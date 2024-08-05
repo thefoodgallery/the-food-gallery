@@ -7,7 +7,6 @@ import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import SocialLinks from "@/components/social-links";
 import Link from "next/link";
-import FlowbiteScript from "@/components/FlowbiteScript";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -15,6 +14,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    const loadFlowbite = async () => {
+      if (typeof window !== "undefined") {
+        import("flowbite").then((module) => module.initFlowbite());
+        import("flowbite").then((module) => module.initAccordions());
+        import("flowbite").then((module) => module.initCarousels());
+        import("flowbite").then((module) => module.initCollapses());
+        import("flowbite").then((module) => module.initDials());
+        import("flowbite").then((module) => module.initDismisses());
+        import("flowbite").then((module) => module.initDrawers());
+        import("flowbite").then((module) => module.initDropdowns());
+        import("flowbite").then((module) => module.initModals());
+        import("flowbite").then((module) => module.initPopovers());
+        import("flowbite").then((module) => module.initTabs());
+        import("flowbite").then((module) => module.initTooltips());
+        import("flowbite").then((module) => module.initInputCounters());
+        import("flowbite").then((module) => module.initCopyClipboards());
+        import("flowbite").then((module) => module.initDatepickers());
+      }
+    };
+
+    loadFlowbite();
+  }, []);
+
   return (
     <html lang="en">
       <title>The Food Gallery 24</title>
@@ -64,7 +87,6 @@ export default function RootLayout({
           <PageFooter />
         </SessionProvider>
       </body>
-      <FlowbiteScript />
     </html>
   );
 }
