@@ -15,7 +15,7 @@ export default function MenuPageLayour({
     <main>
       {children}
       <>
-        <div className="flex min-h-[35vh] md:min-h-[35vh] lg:min-h-[30vh] sticky bottom-0 items-center justify-center">
+        <div className="flex min-h-[30vh] sticky bottom-0 items-center justify-center">
           <button
             className="bg-black text-white items-center flex justify-center space-x-2 hover:bg-black px-3 py-2 rounded-md"
             onClick={() => setIsOpen(true)}
