@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { Dropdown } from "flowbite-react";
+
 import {
   Home,
   LogOut,
@@ -181,82 +183,95 @@ const Navbar = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : status === "authenticated" ? (
-          <>
-            <button
-              type="button"
-              data-dropdown-toggle="userDropdownMobile"
-              data-dropdown-placement="bottom-start"
-              id="avatarButtonMobile"
-              className="w-8 h-8 rounded-full cursor-pointer"
-              style={{
-                backgroundImage: `url(${
-                  data.user?.image || "/images/profiles/default-profile.jpg"
-                })`,
-                backgroundSize: "cover", // Ensures the image covers the entire button
-                backgroundPosition: "center", // Centers the image within the button
-                backgroundRepeat: "no-repeat", // Prevents the image from repeating
+          // <>
+          //   <button
+          //     type="button"
+          //     data-dropdown-toggle="userDropdownMobile"
+          //     data-dropdown-placement="bottom-start"
+          //     id="avatarButtonMobile"
+          //     className="w-8 h-8 rounded-full cursor-pointer"
+          //     style={{
+          //       backgroundImage: `url(${
+          //         data.user?.image || "/images/profiles/default-profile.jpg"
+          //       })`,
+          //       backgroundSize: "cover", // Ensures the image covers the entire button
+          //       backgroundPosition: "center", // Centers the image within the button
+          //       backgroundRepeat: "no-repeat", // Prevents the image from repeating
+          //     }}
+          //   >
+          //     {/* <img
+          //       // type="button"
+          //       data-dropdown-toggle="userDropdownMobile"
+          //       data-dropdown-placement="bottom-start"
+          //       className="w-full h-full rounded-full cursor-pointer"
+          //       src={data.user?.image || "/images/profiles/default-profile.jpg"}
+          //       alt="User dropdown"
+          //     /> */}
+          //   </button>
+
+          //   <div
+          //     id="userDropdownMobile"
+          //     className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+          //   >
+          //     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+          //       <div>{data.user?.name}</div>
+          //       <div className="font-medium truncate">{data.user?.email}</div>
+          //     </div>
+          //     <ul
+          //       className="py-2 text-sm text-gray-700 dark:text-gray-200"
+          //       aria-labelledby="avatarButton"
+          //     >
+          //       <li>
+          //         <a
+          //           href="#"
+          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          //         >
+          //           Orders
+          //         </a>
+          //       </li>
+          //       <li>
+          //         <a
+          //           href="#"
+          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          //         >
+          //           Settings
+          //         </a>
+          //       </li>
+          //       <li>
+          //         <a
+          //           href="#"
+          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          //         >
+          //           Refer
+          //         </a>
+          //       </li>
+          //     </ul>
+          //     <div className="py-1">
+          //       <a
+          //         onClick={() => {
+          //           signOut();
+          //         }}
+          //         type="button"
+          //         className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          //       >
+          //         Sign out
+          //       </a>
+          //     </div>
+          //   </div>
+          //   </>
+
+          <Dropdown label={data?.user?.name} dismissOnClick={false}>
+            <Dropdown.Item>Orders</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Refer</Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                signOut();
               }}
             >
-              {/* <img
-                // type="button"
-                data-dropdown-toggle="userDropdownMobile"
-                data-dropdown-placement="bottom-start"
-                className="w-full h-full rounded-full cursor-pointer"
-                src={data.user?.image || "/images/profiles/default-profile.jpg"}
-                alt="User dropdown"
-              /> */}
-            </button>
-
-            <div
-              id="userDropdownMobile"
-              className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-            >
-              <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                <div>{data.user?.name}</div>
-                <div className="font-medium truncate">{data.user?.email}</div>
-              </div>
-              <ul
-                className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="avatarButton"
-              >
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Orders
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Refer
-                  </a>
-                </li>
-              </ul>
-              <div className="py-1">
-                <a
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Sign out
-                </a>
-              </div>
-            </div>
-          </>
+              Sign out
+            </Dropdown.Item>
+          </Dropdown>
         ) : (
           <button
             onClick={() => {
@@ -296,82 +311,94 @@ const Navbar = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : status === "authenticated" ? (
-          <>
-            <button
-              type="button"
-              id="avatarButton"
-              data-dropdown-toggle="userDropdown"
-              data-dropdown-placement="bottom-start"
-              className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
-              style={{
-                backgroundImage: `url(${
-                  data.user?.image || "/images/profiles/default-profile.jpg"
-                })`,
-                backgroundSize: "cover", // Ensures the image covers the entire button
-                backgroundPosition: "center", // Centers the image within the button
-                backgroundRepeat: "no-repeat", // Prevents the image from repeating
+          // <>
+          //   <button
+          //     type="button"
+          //     id="avatarButton"
+          //     data-dropdown-toggle="userDropdown"
+          //     data-dropdown-placement="bottom-start"
+          //     className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
+          //     style={{
+          //       backgroundImage: `url(${
+          //         data.user?.image || "/images/profiles/default-profile.jpg"
+          //       })`,
+          //       backgroundSize: "cover", // Ensures the image covers the entire button
+          //       backgroundPosition: "center", // Centers the image within the button
+          //       backgroundRepeat: "no-repeat", // Prevents the image from repeating
+          //     }}
+          //   >
+          //     {/* <img
+          //       // type="button"
+          //       data-dropdown-toggle="userDropdownMobile"
+          //       data-dropdown-placement="bottom-start"
+          //       className="w-full h-full rounded-full cursor-pointer"
+          //       src={data.user?.image || "/images/profiles/default-profile.jpg"}
+          //       alt="User dropdown"
+          //     /> */}
+          //   </button>
+
+          //   <div
+          //     id="userDropdown"
+          //     className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+          //   >
+          //     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+          //       <div>{data.user?.name}</div>
+          //       <div className="font-medium truncate">{data.user?.email}</div>
+          //     </div>
+          //     <ul
+          //       className="py-2 text-sm text-gray-700 dark:text-gray-200"
+          //       aria-labelledby="avatarButton"
+          //     >
+          //       <li>
+          //         <a
+          //           href="#"
+          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          //         >
+          //           Orders
+          //         </a>
+          //       </li>
+          //       <li>
+          //         <a
+          //           href="#"
+          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          //         >
+          //           Settings
+          //         </a>
+          //       </li>
+          //       <li>
+          //         <a
+          //           href="#"
+          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          //         >
+          //           Refer
+          //         </a>
+          //       </li>
+          //     </ul>
+          //     <div className="py-1">
+          //       <a
+          //         onClick={() => {
+          //           signOut();
+          //         }}
+          //         type="button"
+          //         className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          //       >
+          //         Sign out
+          //       </a>
+          //     </div>
+          //   </div>
+          // </>
+          <Dropdown label={data?.user?.name} dismissOnClick={false}>
+            <Dropdown.Item>Orders</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Refer</Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                signOut();
               }}
             >
-              {/* <img
-                // type="button"
-                data-dropdown-toggle="userDropdownMobile"
-                data-dropdown-placement="bottom-start"
-                className="w-full h-full rounded-full cursor-pointer"
-                src={data.user?.image || "/images/profiles/default-profile.jpg"}
-                alt="User dropdown"
-              /> */}
-            </button>
-
-            <div
-              id="userDropdown"
-              className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-            >
-              <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                <div>{data.user?.name}</div>
-                <div className="font-medium truncate">{data.user?.email}</div>
-              </div>
-              <ul
-                className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="avatarButton"
-              >
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Orders
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Refer
-                  </a>
-                </li>
-              </ul>
-              <div className="py-1">
-                <a
-                  onClick={() => {
-                    signOut();
-                  }}
-                  type="button"
-                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Sign out
-                </a>
-              </div>
-            </div>
-          </>
+              Sign out
+            </Dropdown.Item>
+          </Dropdown>
         ) : (
           <button
             onClick={() => {
