@@ -2,14 +2,16 @@
 import { ChevronDown, ChevronUp, LogOut, X } from "lucide-react";
 import React, { useState } from "react";
 import { Drawer } from "flowbite-react";
+import { useStateContext } from "@/context/StateContext";
 
 export default function MenuPageLayour({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { selectedFood, setSelectedFood } = useStateContext();
+  // console.log(selectedFood);
   const [isOpen, setIsOpen] = useState(false);
-
   const handleClose = () => setIsOpen(false);
   return (
     <main>

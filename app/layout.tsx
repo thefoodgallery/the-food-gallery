@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import SocialLinks from "@/components/social-links";
 import Link from "next/link";
+import { AppContextProvider } from "@/context/StateContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -48,43 +49,48 @@ export default function RootLayout({
       <body className={inter.className}>
         <SocialLinks />
         <SessionProvider>
-          <Navbar />
-          <main>
-            <div className="w-full hidden md:flex items-center md:space-x-8 lg:space-x-16 justify-center mt-3 mb-5">
-              <Link className="md:text-sm lg:text-xl font-bold" href={"/"}>
-                HOME
-              </Link>
-              <Link className="tmd:text-sm lg:text-xl font-bold" href={"/menu"}>
-                MENU
-              </Link>
-              <Link
-                className="tmd:text-sm lg:text-xl font-bold"
-                href={"/order-online"}
-              >
-                ORDER
-              </Link>
-              <Link
-                className="tmd:text-sm lg:text-xl font-bold"
-                href={"/blogs"}
-              >
-                BLOGS
-              </Link>
-              <Link
-                className="tmd:text-sm lg:text-xl font-bold"
-                href={"/about"}
-              >
-                ABOUT US
-              </Link>
-              <Link
-                className="tmd:text-sm lg:text-xl font-bold"
-                href={"/testimonals"}
-              >
-                TESTIMONALS
-              </Link>
-            </div>
-            {children}
-          </main>
-          <PageFooter />
+          <AppContextProvider>
+            <Navbar />
+            <main>
+              <div className="w-full hidden md:flex items-center md:space-x-8 lg:space-x-16 justify-center mt-3 mb-5">
+                <Link className="md:text-sm lg:text-xl font-bold" href={"/"}>
+                  HOME
+                </Link>
+                <Link
+                  className="tmd:text-sm lg:text-xl font-bold"
+                  href={"/menu"}
+                >
+                  MENU
+                </Link>
+                <Link
+                  className="tmd:text-sm lg:text-xl font-bold"
+                  href={"/order-online"}
+                >
+                  ORDER
+                </Link>
+                <Link
+                  className="tmd:text-sm lg:text-xl font-bold"
+                  href={"/blogs"}
+                >
+                  BLOGS
+                </Link>
+                <Link
+                  className="tmd:text-sm lg:text-xl font-bold"
+                  href={"/about"}
+                >
+                  ABOUT US
+                </Link>
+                <Link
+                  className="tmd:text-sm lg:text-xl font-bold"
+                  href={"/testimonals"}
+                >
+                  TESTIMONALS
+                </Link>
+              </div>
+              {children}
+            </main>
+            <PageFooter />
+          </AppContextProvider>
         </SessionProvider>
       </body>
     </html>
