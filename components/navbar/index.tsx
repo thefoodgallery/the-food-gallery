@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { Dropdown } from "flowbite-react";
 
@@ -9,6 +10,8 @@ import {
   Phone,
   Pizza,
   Search,
+  Settings,
+  Share2,
   ShoppingCart,
   Star,
   User,
@@ -261,17 +264,33 @@ const Navbar = () => {
           //   </>
 
           <Dropdown
-            className="text-xs p-2"
+            className="w-60 rounded-md"
+            renderTrigger={() => (
+              <img
+                src={
+                  data?.user?.image || "/images/profiles/default-profile.jpg"
+                }
+                className="h-10 w-10 rounded-full"
+              />
+            )}
             label={data?.user?.name}
             dismissOnClick={false}
           >
-            <Dropdown.Item>Orders</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Refer</Dropdown.Item>
+            <Dropdown.Header>
+              <span className="block text-sm">{data.user?.name}</span>
+              <span className="block truncate text-sm font-medium">
+                {data?.user?.email}
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item icon={Pizza}>My Orders</Dropdown.Item>
+            <Dropdown.Item icon={Settings}>Settings</Dropdown.Item>
+            <Dropdown.Item icon={Share2}>Refer</Dropdown.Item>
+            <Dropdown.Divider />
             <Dropdown.Item
               onClick={() => {
                 signOut();
               }}
+              icon={LogOut}
             >
               Sign out
             </Dropdown.Item>
@@ -391,14 +410,34 @@ const Navbar = () => {
           //     </div>
           //   </div>
           // </>
-          <Dropdown label={data?.user?.name} dismissOnClick={false}>
-            <Dropdown.Item>Orders</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Refer</Dropdown.Item>
+          <Dropdown
+            className="w-60 !-left-6 rounded-md"
+            renderTrigger={() => (
+              <img
+                src={
+                  data?.user?.image || "/images/profiles/default-profile.jpg"
+                }
+                className="md:h-10 md:w-10 lg:h-12 lg:w-12 rounded-full"
+              />
+            )}
+            label={data?.user?.name}
+            dismissOnClick={false}
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">{data.user?.name}</span>
+              <span className="block truncate text-sm font-medium">
+                {data?.user?.email}
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item icon={Pizza}>My Orders</Dropdown.Item>
+            <Dropdown.Item icon={Settings}>Settings</Dropdown.Item>
+            <Dropdown.Item icon={Share2}>Refer</Dropdown.Item>
+            <Dropdown.Divider />
             <Dropdown.Item
               onClick={() => {
                 signOut();
               }}
+              icon={LogOut}
             >
               Sign out
             </Dropdown.Item>
