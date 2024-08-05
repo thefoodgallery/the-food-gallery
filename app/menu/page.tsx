@@ -17,7 +17,8 @@ interface FoodItem {
 
 const MenuPage = () => {
   const [search, setSearch] = React.useState("");
-  const { selectedFood, setSelectedFood } = useStateContext();
+  const { selectedFood, handleRemoveItem, handleSelectFood } =
+    useStateContext();
 
   const filteredMenu = constants.menu.map((category) => {
     const items = category.items.filter((item) =>
@@ -25,36 +26,6 @@ const MenuPage = () => {
     );
     return { ...category, items };
   });
-
-  const handleSelectFood = useCallback(
-    (food: FoodItem) => {
-      setSelectedFood([...selectedFood, food]);
-    },
-    [selectedFood, setSelectedFood]
-  );
-
-  // const handleRemoveItem = useCallback(
-  //   (food: FoodItem) => {
-  //     setSelectedFood(selectedFood.filter((fd) => fd.name !== food.name));
-  //   },
-  //   [selectedFood, setSelectedFood]
-  // );
-  const handleRemoveItem = useCallback(
-    (food: FoodItem) => {
-      setSelectedFood((prevSelectedFood) => {
-        const index = prevSelectedFood.findIndex(
-          (fd: FoodItem) => fd.name === food.name
-        );
-        if (index !== -1) {
-          const newSelectedFood = [...prevSelectedFood];
-          newSelectedFood.splice(index, 1);
-          return newSelectedFood;
-        }
-        return prevSelectedFood;
-      });
-    },
-    [setSelectedFood]
-  );
 
   return (
     <div className="w-full h-full px-2 md:px-4 lg:px-8">
