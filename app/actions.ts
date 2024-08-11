@@ -48,7 +48,7 @@ export async function sendNewUserMail(userDetails: UserDetails) {
 
     const templatePath = path.join(
       process.cwd(),
-      "util",
+      "public",
       "email-templates",
       "new-user.html"
     );
@@ -111,7 +111,7 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
 
     const templatePath = path.join(
       process.cwd(),
-      "util",
+      "public",
       "email-templates",
       "new-order.html"
     );
