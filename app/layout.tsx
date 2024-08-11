@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import SocialLinks from "@/components/social-links";
 import Link from "next/link";
 import { AppContextProvider } from "@/context/StateContext";
+import { usePathname } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -39,6 +41,8 @@ export default function RootLayout({
     loadFlowbite();
   }, []);
 
+  const path = usePathname();
+
   return (
     <html lang="en">
       <title>The Food Gallery 24</title>
@@ -53,35 +57,62 @@ export default function RootLayout({
             <Navbar />
             <main>
               <div className="w-full hidden md:flex items-center md:space-x-8 lg:space-x-16 justify-center mt-3 mb-5">
-                <Link className="md:text-sm lg:text-xl font-bold" href={"/"}>
+                <Link
+                  className={`md:text-sm lg:text-xl font-bold ${
+                    path === "/"
+                      ? "text-blue-500 underline underline-offset-4"
+                      : ""
+                  }`}
+                  href={"/"}
+                >
                   HOME
                 </Link>
                 <Link
-                  className="tmd:text-sm lg:text-xl font-bold"
+                  className={`md:text-sm lg:text-xl font-bold ${
+                    path === "/menu"
+                      ? "text-blue-500 underline underline-offset-4"
+                      : ""
+                  }`}
                   href={"/menu"}
                 >
                   MENU
                 </Link>
                 <Link
-                  className="tmd:text-sm lg:text-xl font-bold"
+                  className={`md:text-sm lg:text-xl font-bold ${
+                    path === "/order-online"
+                      ? "text-blue-500 underline underline-offset-4"
+                      : ""
+                  }`}
                   href={"/order-online"}
                 >
                   ORDER ONLINE
                 </Link>
                 <Link
-                  className="tmd:text-sm lg:text-xl font-bold"
+                  className={`md:text-sm lg:text-xl font-bold ${
+                    path === "/blogs"
+                      ? "text-blue-500 underline underline-offset-4"
+                      : ""
+                  }`}
                   href={"/blogs"}
                 >
                   BLOGS
                 </Link>
                 <Link
-                  className="tmd:text-sm lg:text-xl font-bold"
+                  className={`md:text-sm lg:text-xl font-bold ${
+                    path === "/about"
+                      ? "text-blue-500 underline underline-offset-4"
+                      : ""
+                  }`}
                   href={"/about"}
                 >
                   ABOUT US
                 </Link>
                 <Link
-                  className="tmd:text-sm lg:text-xl font-bold"
+                  className={`md:text-sm lg:text-xl font-bold ${
+                    path === "/testimonals"
+                      ? "text-blue-500 underline underline-offset-4"
+                      : ""
+                  }`}
                   href={"/testimonals"}
                 >
                   TESTIMONALS
@@ -92,6 +123,7 @@ export default function RootLayout({
             <PageFooter />
           </AppContextProvider>
         </SessionProvider>
+        <Toaster position="top-right" reverseOrder={true} />
       </body>
     </html>
   );

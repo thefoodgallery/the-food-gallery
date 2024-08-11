@@ -6,6 +6,7 @@ import { Drawer } from "flowbite-react";
 import { useStateContext } from "@/context/StateContext";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { placeOrder } from "../actions";
+import toast from "react-hot-toast";
 
 interface FoodItem {
   name: string;
@@ -49,18 +50,16 @@ export default function MenuPageLayour({
             : { ...item, count: 1 };
           return acc;
         }, {} as Record<string, FoodItem & { count: number }>);
-        // console.log(Object.values(countedItems));
         if (Object.values(countedItems).length > 0) {
           const total = Object.values(countedItems)
             .reduce((acc, item) => acc + item.price, 0)
             .toFixed(2);
           setTotal(total);
-          // Set the state with unique items and their counts
           setUniqueItemsWithCounts(Object.values(countedItems));
         }
       }
     }
-  }, [selectedFood]); // Re-run when selectedFood changes
+  }, [selectedFood]);
 
   const [loading, setLoading] = useState(false);
 
@@ -71,7 +70,6 @@ export default function MenuPageLayour({
         "order-items",
         JSON.stringify(uniqueItemsWithCounts)
       );
-      // console.log(status);
       if (status === "unauthenticated") {
         await signIn("google", { callbackUrl: window.location.href });
         return;
@@ -88,8 +86,6 @@ export default function MenuPageLayour({
         }
       }
 
-      // console.log(uniqueItemsWithCounts);
-      // console.log(session?.user);
       if (session?.user) {
         await placeOrder({
           email: session?.user?.email || "",
@@ -100,6 +96,7 @@ export default function MenuPageLayour({
         setIsOpen(false);
         setUniqueItemsWithCounts([]);
         setTotal(0);
+        toast.success("Order Placed Successfully!!");
       }
     } catch (error) {
       console.log(error);

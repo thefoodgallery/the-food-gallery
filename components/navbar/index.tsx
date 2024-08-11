@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { Dropdown } from "flowbite-react";
 
 import {
@@ -19,9 +20,11 @@ import {
 } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data, status } = useSession();
+  const router = useRouter();
   return (
     <div className="w-full px-2 flex md:grid md:grid-cols-4 md:px-6 py-3">
       <div className="w-full flex items-center justify-start sm:hidden">
@@ -282,7 +285,14 @@ const Navbar = () => {
                 {data?.user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item icon={Pizza}>My Orders</Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                router.push("/my-orders");
+              }}
+              icon={Pizza}
+            >
+              My Orders
+            </Dropdown.Item>
             <Dropdown.Item icon={Settings}>Settings</Dropdown.Item>
             <Dropdown.Item icon={Share2}>Refer</Dropdown.Item>
             <Dropdown.Divider />
@@ -429,7 +439,14 @@ const Navbar = () => {
                 {data?.user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item icon={Pizza}>My Orders</Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                router.push("/my-orders");
+              }}
+              icon={Pizza}
+            >
+              My Orders
+            </Dropdown.Item>
             <Dropdown.Item icon={Settings}>Settings</Dropdown.Item>
             <Dropdown.Item icon={Share2}>Refer</Dropdown.Item>
             <Dropdown.Divider />

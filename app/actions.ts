@@ -8,6 +8,7 @@ import { FoodItem } from "@/context/StateContext";
 import User from "@/models/User";
 import Order from "@/models/Orders";
 import { ObjectId } from "mongodb";
+import dbConnect from "@/lib/mongoDb";
 
 const OAuth2 = google.auth.OAuth2;
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -149,12 +150,10 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
     );
     // console.log("New order Email sent to restaurant: " + res.response);
   } catch (error) {
-    console.error(error);
     console.log(error);
     return error;
   }
 }
-
 interface OrderData {
   items: (FoodItem & { count: number })[];
   email: string;
@@ -162,6 +161,7 @@ interface OrderData {
 
 export const placeOrder = async (orderData: OrderData) => {
   try {
+    await dbConnect();
     const user = await User.findOne({ email: orderData.email }).exec();
     if (!user) {
       throw new Error("User not found");
@@ -187,9 +187,45 @@ export const placeOrder = async (orderData: OrderData) => {
       userEmail: orderData.email,
       userName: user.name,
     });
-    console.log("Order placed successfully:", savedOrder);
+    // console.log("Order placed successfully:", savedOrder);
   } catch (error) {
     console.error("Error placing order:", error);
+    throw error;
+  }
+};
+
+export const getMyOrders = async (
+  userEmail: string | undefined | null
+): Promise<
+  {
+    _id: string;
+    customer: string;
+    items: any[];
+    totalAmount: number;
+    orderDate: string;
+    __v: number;
+  }[]
+> => {
+  try {
+    await dbConnect();
+    // console.log(userEmail);
+    const user = await User.findOne({ email: userEmail });
+    // console.log(user);
+    const orders = await Order.find({ customer: user?._id }).exec();
+
+    return orders.map((order) => {
+      const plainOrder = order.toObject();
+      // console.log(plainOrder);
+      return {
+        ...plainOrder,
+        _id: plainOrder._id.toString(),
+        customer: plainOrder.customer.toString(),
+        orderDate: plainOrder.orderDate.toISOString(),
+        items: JSON.parse(plainOrder.items),
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching orders:", error);
     throw error;
   }
 };

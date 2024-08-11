@@ -12,7 +12,7 @@ interface IOrder extends Document {
 // Create a Mongoose schema for the Order
 const OrderSchema: Schema = new Schema({
   customer: { type: Schema.Types.ObjectId, ref: "User", required: true }, // Reference to User
-  items: { type: [String], required: true },
+  items: { type: String, required: true },
   totalAmount: { type: Number, required: true },
   orderDate: { type: Date, default: Date.now },
 });
