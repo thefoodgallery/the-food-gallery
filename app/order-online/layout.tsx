@@ -7,6 +7,7 @@ import { useStateContext } from "@/context/StateContext";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { placeOrder } from "../actions";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface FoodItem {
   name: string;
@@ -19,6 +20,7 @@ export default function MenuPageLayour({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const { data, status } = useSession();
   const { selectedFood, setSelectedFood } = useStateContext();
   const [uniqueItemsWithCounts, setUniqueItemsWithCounts] = useState<
@@ -100,8 +102,10 @@ export default function MenuPageLayour({
       }
     } catch (error) {
       console.log(error);
+      toast.error("Error placing order please ty again later");
     } finally {
       setLoading(false);
+      router.push("/my-orders");
     }
   };
 
