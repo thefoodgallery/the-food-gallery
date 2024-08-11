@@ -365,7 +365,7 @@ export const placeOrder = async (orderData: OrderData) => {
     }
 
     const total = orderData.items
-      .reduce((acc, item) => acc + item.price, 0)
+      .reduce((acc, item) => acc + item.price * item.count, 0)
       .toFixed(2);
 
     const newOrder = new Order({

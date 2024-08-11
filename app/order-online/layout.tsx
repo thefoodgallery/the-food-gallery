@@ -29,7 +29,6 @@ export default function MenuPageLayour({
   >([]);
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
-
   const [total, setTotal] = useState<number | string>(0);
 
   useEffect(() => {
@@ -46,6 +45,7 @@ export default function MenuPageLayour({
         setTotal(total);
         setIsOpen(true);
         setUniqueItemsWithCounts(parsedItems);
+        localStorage.clear();
       } else {
         const countedItems = selectedFood.reduce((acc, item) => {
           acc[item.name] = acc[item.name]
@@ -53,12 +53,16 @@ export default function MenuPageLayour({
             : { ...item, count: 1 };
           return acc;
         }, {} as Record<string, FoodItem & { count: number }>);
+
         if (Object.values(countedItems).length > 0) {
           const total = selectedFood
             .reduce((acc, item) => acc + item.price, 0)
             .toFixed(2);
           setTotal(total);
           setUniqueItemsWithCounts(Object.values(countedItems));
+        } else {
+          setUniqueItemsWithCounts([]);
+          setTotal(0);
         }
       }
     }
