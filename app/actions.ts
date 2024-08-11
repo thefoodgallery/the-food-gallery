@@ -1,8 +1,7 @@
 "use server";
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
-import { promises as fs } from "fs";
-import path from "path";
+// import { promises as fs } from "fs";
 import Handlebars from "handlebars";
 import { FoodItem } from "@/context/StateContext";
 import User from "@/models/User";
@@ -51,10 +50,84 @@ export async function sendNewUserMail(userDetails: UserDetails) {
     //   "/app/email-templates/new-user.html"
     // );
     // console.log("new user template path", templatePath);
-    let template = await fs.readFile(
-      process.cwd() + "/app/email-templates/new-user.html",
-      "utf-8"
-    );
+    let template = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New User Registration</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    "
+  >
+    <div
+      class="container"
+      style="
+        width: 100%;
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div class="header" style="text-align: center">
+        <img
+          src="{{logoUrl}}"
+          alt="Brand Logo"
+          class="logo"
+          style="max-width: 100px; margin-bottom: 20px"
+        />
+      </div>
+      <div class="content" style="margin: 20px 0; text-align: center">
+        <p>A new user has registered!</p>
+      </div>
+      <div
+        class="card"
+        style="
+          border: 1px solid #ddd;
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+          display: inline-block;
+        "
+      >
+        <img
+          src="{{userPhoto}}"
+          alt="User Photo"
+          class="photo"
+          style="
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+          "
+          width="100"
+          height="100"
+        />
+        <div class="details">
+          <p
+            class="name"
+            style="margin: 10px 0; font-size: 20px; font-weight: bold"
+          >
+            {{userName}}
+          </p>
+          <p class="email" style="margin: 10px 0; font-size: 16px">
+            {{userEmail}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+`;
 
     template = template.replace(
       "{{logoUrl}}",
@@ -116,11 +189,132 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
     // );
 
     // console.log("placing order templat path", templatePath);
-    const templateSource = await fs.readFile(
-      process.cwd() + "/app/email-templates/new-order.html",
-      "utf-8"
-    );
-
+    const templateSource = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f9f9f9;
+    "
+  >
+    <div
+      class="container"
+      style="
+        width: 100%;
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      "
+    >
+      <div class="header" style="text-align: center">
+        <img
+          src="{{logoUrl}}"
+          alt="Brand Logo"
+          class="logo"
+          style="max-width: 100px; margin-bottom: 20px"
+        />
+      </div>
+      <div class="content" style="margin: 20px 0; text-align: center">
+        <p>Thank you for your order!</p>
+      </div>
+      <div class="details" style="text-align: left; margin-bottom: 20px">
+        <p style="margin: 5px 0"><strong>Name:</strong> {{userName}}</p>
+        <p style="margin: 5px 0"><strong>Email:</strong> {{userEmail}}</p>
+        <p style="margin: 5px 0"><strong>Order ID:</strong> {{orderId}}</p>
+      </div>
+      <table
+        class="order-items"
+        style="width: 100%; border-collapse: collapse; margin-bottom: 20px"
+        width="100%"
+      >
+        <thead>
+          <tr>
+            <th
+              style="
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                background-color: #f2f2f2;
+              "
+              align="left"
+              bgcolor="#f2f2f2"
+            >
+              Item
+            </th>
+            <th
+              style="
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                background-color: #f2f2f2;
+              "
+              align="left"
+              bgcolor="#f2f2f2"
+            >
+              Quantity
+            </th>
+            <th
+              style="
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                background-color: #f2f2f2;
+              "
+              align="left"
+              bgcolor="#f2f2f2"
+            >
+              Price
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orderItems}}
+          <tr>
+            <td
+              style="border: 1px solid #ddd; padding: 8px; text-align: left"
+              align="left"
+            >
+              {{this.name}}
+            </td>
+            <td
+              style="border: 1px solid #ddd; padding: 8px; text-align: left"
+              align="left"
+            >
+              {{this.count}}
+            </td>
+            <td
+              style="border: 1px solid #ddd; padding: 8px; text-align: left"
+              align="left"
+            >
+              $ {{this.price}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <div
+        class="total"
+        style="text-align: right; margin-top: 20px; font-weight: bold"
+      >
+        <p>Total Price: $ {{totalPrice}}</p>
+      </div>
+    </div>
+  </body>
+</html>
+`;
     const template = Handlebars.compile(templateSource);
     const emailHtml = template({
       logoUrl: "https://www.thefood-gallery.com/images/assets/logo.png",
