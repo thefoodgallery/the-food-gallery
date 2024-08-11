@@ -45,7 +45,9 @@ export default function MenuPageLayour({
         setTotal(total);
         setIsOpen(true);
         setUniqueItemsWithCounts(parsedItems);
-        localStorage.clear();
+        setTimeout(() => {
+          localStorage.removeItem("order-items");
+        }, 0);
       } else {
         const countedItems = selectedFood.reduce((acc, item) => {
           acc[item.name] = acc[item.name]
