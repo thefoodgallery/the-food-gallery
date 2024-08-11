@@ -52,6 +52,7 @@ export async function sendNewUserMail(userDetails: UserDetails) {
       "email-templates",
       "new-user.html"
     );
+    console.log("new user template path", templatePath);
     let template = fs.readFileSync(templatePath, "utf-8");
 
     template = template.replace(
@@ -115,7 +116,7 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
       "new-order.html"
     );
 
-    // console.log(templatePath);
+    console.log("placing order templat path", templatePath);
     const templateSource = fs.readFileSync(templatePath, "utf-8");
 
     const template = Handlebars.compile(templateSource);
