@@ -46,12 +46,15 @@ export async function sendNewUserMail(userDetails: UserDetails) {
     } as nodemailer.TransportOptions);
     const { userName, userEmail, userPhoto } = userDetails;
 
-    const templatePath = path.join(
-      process.cwd(),
-      "/public/email-templates/new-user.html"
+    // const templatePath = path.join(
+    //   process.cwd(),
+    //   "/app/email-templates/new-user.html"
+    // );
+    // console.log("new user template path", templatePath);
+    let template = await fs.readFile(
+      process.cwd() + "/app/email-templates/new-user.html",
+      "utf-8"
     );
-    console.log("new user template path", templatePath);
-    let template = await fs.readFile(templatePath, "utf-8");
 
     template = template.replace(
       "{{logoUrl}}",
@@ -107,13 +110,16 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
     const { userName, userEmail, orderId, orderItems, totalPrice } =
       orderDetails;
 
-    const templatePath = path.join(
-      process.cwd(),
-      "/public/email-templates/new-order.html"
-    );
+    // const templatePath = path.join(
+    //   process.cwd(),
+    //   "/public/email-templates/new-order.html"
+    // );
 
-    console.log("placing order templat path", templatePath);
-    const templateSource = await fs.readFile(templatePath, "utf-8");
+    // console.log("placing order templat path", templatePath);
+    const templateSource = await fs.readFile(
+      process.cwd() + "/app/email-templates/new-order.html",
+      "utf-8"
+    );
 
     const template = Handlebars.compile(templateSource);
     const emailHtml = template({
