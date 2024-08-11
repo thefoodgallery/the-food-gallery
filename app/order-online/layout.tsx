@@ -23,6 +23,7 @@ export default function MenuPageLayour({
   const router = useRouter();
   const { data, status } = useSession();
   const { selectedFood, setSelectedFood } = useStateContext();
+
   const [uniqueItemsWithCounts, setUniqueItemsWithCounts] = useState<
     (FoodItem & { count: number })[]
   >([]);
@@ -53,7 +54,7 @@ export default function MenuPageLayour({
           return acc;
         }, {} as Record<string, FoodItem & { count: number }>);
         if (Object.values(countedItems).length > 0) {
-          const total = Object.values(countedItems)
+          const total = selectedFood
             .reduce((acc, item) => acc + item.price, 0)
             .toFixed(2);
           setTotal(total);
