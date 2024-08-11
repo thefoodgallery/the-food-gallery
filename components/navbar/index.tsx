@@ -14,6 +14,7 @@ import {
   Settings,
   Share2,
   ShoppingCart,
+  Soup,
   Star,
   User,
   Utensils,
@@ -97,8 +98,10 @@ const Navbar = () => {
                   href="/order-online"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
-                  <Pizza size={20} />
-                  <span className="flex-1 ms-3 whitespace-nowrap">Order</span>
+                  <Soup size={20} />
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    Order Online
+                  </span>
                 </Link>
               </li>
               <li>
@@ -132,20 +135,22 @@ const Navbar = () => {
                   </span>
                 </a>
               </li>
-              <li>
-                <a
-                  type="button"
-                  onClick={() => {
-                    signOut();
-                  }}
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <LogOut size={20} />
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    Sign Out
-                  </span>
-                </a>
-              </li>
+              {status === "authenticated" && (
+                <li>
+                  <a
+                    type="button"
+                    onClick={() => {
+                      signOut();
+                    }}
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <LogOut size={20} />
+                    <span className="flex-1 ms-3 whitespace-nowrap">
+                      Sign Out
+                    </span>
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
