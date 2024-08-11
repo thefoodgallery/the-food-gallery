@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import User from "@/models/User"; // Update the path as per your project structure
 import dbConnect from "@/lib/mongoDb";
+import { sendNewUserMail } from "@/app/actions";
 
 const handler = NextAuth({
   providers: [
@@ -23,6 +24,12 @@ const handler = NextAuth({
           name: user.name,
         });
         await newUser.save();
+
+        await sendNewUserMail({
+          userName: user.name || "",
+          userEmail: user.email ?? "",
+          userPhoto: user.image ?? "",
+        });
       }
 
       return true;

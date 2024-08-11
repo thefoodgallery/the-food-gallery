@@ -70,7 +70,7 @@ const MenuPage = () => {
                             <span className="lg:text-3xl md:text-2xl text-xl font-bold text-gray-900 dark:text-white">
                               ${item.price}
                             </span>
-                            {/* {selectedFood.some(
+                            {selectedFood.some(
                               (fd) => fd.name === item.name
                             ) ? (
                               <div className="flex items-center">
@@ -107,7 +107,7 @@ const MenuPage = () => {
                               >
                                 Add to cart
                               </button>
-                            )} */}
+                            )}
                           </div>
                         </div>
                       </div>

@@ -11,7 +11,7 @@ interface FoodOptions {
   price: number;
 }
 
-interface FoodItem {
+export interface FoodItem {
   name: string;
   images: { src: string }[];
   price: number;

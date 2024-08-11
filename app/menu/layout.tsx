@@ -24,7 +24,6 @@ export default function MenuPageLayour({
     return acc;
   }, {} as Record<string, FoodItem & { count: number }>);
 
-  // Convert the counted items object to an array
   const uniqueItemsWithCounts = Object.values(countedItems);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +32,12 @@ export default function MenuPageLayour({
   const total = selectedFood
     .reduce((acc, item) => acc + item.price, 0)
     .toFixed(2);
+
+  const handlePlaceOrder = async () => {};
   return (
     <main>
       {children}
-      <>
+      {/* <>
         <div className="flex min-h-[30vh] sticky bottom-0 items-center justify-center">
           <button
             className="bg-black text-white items-center flex justify-center space-x-2 hover:bg-black px-3 py-2 rounded-md"
@@ -105,6 +106,7 @@ export default function MenuPageLayour({
             </div>
             <div className="flex w-full items-center justify-center pb-1 pt-3">
               <button
+                onClick={handlePlaceOrder}
                 type="button"
                 className="flex items-center justify-center space-x-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
               >
@@ -113,7 +115,7 @@ export default function MenuPageLayour({
             </div>
           </Drawer.Items>
         </Drawer>
-      </>
+      </> */}
     </main>
   );
 }

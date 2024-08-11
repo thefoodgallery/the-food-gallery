@@ -66,7 +66,7 @@ export default function RootLayout({
                   className="tmd:text-sm lg:text-xl font-bold"
                   href={"/order-online"}
                 >
-                  ORDER
+                  ORDER ONLINE
                 </Link>
                 <Link
                   className="tmd:text-sm lg:text-xl font-bold"
