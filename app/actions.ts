@@ -48,9 +48,7 @@ export async function sendNewUserMail(userDetails: UserDetails) {
 
     const templatePath = path.join(
       process.cwd(),
-      "public",
-      "email-templates",
-      "new-user.html"
+      "/public/email-templates/new-user.html"
     );
     console.log("new user template path", templatePath);
     let template = fs.readFileSync(templatePath, "utf-8");
@@ -111,9 +109,7 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
 
     const templatePath = path.join(
       process.cwd(),
-      "public",
-      "email-templates",
-      "new-order.html"
+      "/public/email-templates/new-order.html"
     );
 
     console.log("placing order templat path", templatePath);
