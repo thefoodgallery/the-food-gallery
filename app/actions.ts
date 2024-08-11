@@ -208,7 +208,9 @@ export const getMyOrders = async (
     // console.log(userEmail);
     const user = await User.findOne({ email: userEmail });
     // console.log(user);
-    const orders = await Order.find({ customer: user?._id }).exec();
+    const orders = await Order.find({ customer: user?._id })
+      .sort({ orderDate: -1 })
+      .exec();
 
     return orders.map((order) => {
       const plainOrder = order.toObject();
