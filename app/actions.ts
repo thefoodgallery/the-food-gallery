@@ -1,7 +1,7 @@
 "use server";
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
-import fs from "fs";
+import { promises as fs } from "fs";
 import path from "path";
 import Handlebars from "handlebars";
 import { FoodItem } from "@/context/StateContext";
@@ -51,7 +51,7 @@ export async function sendNewUserMail(userDetails: UserDetails) {
       "/public/email-templates/new-user.html"
     );
     console.log("new user template path", templatePath);
-    let template = fs.readFileSync(templatePath, "utf-8");
+    let template = await fs.readFile(templatePath, "utf-8");
 
     template = template.replace(
       "{{logoUrl}}",
@@ -113,7 +113,7 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
     );
 
     console.log("placing order templat path", templatePath);
-    const templateSource = fs.readFileSync(templatePath, "utf-8");
+    const templateSource = await fs.readFile(templatePath, "utf-8");
 
     const template = Handlebars.compile(templateSource);
     const emailHtml = template({
