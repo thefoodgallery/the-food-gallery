@@ -99,13 +99,13 @@ export default function MenuPageLayour({
         setUniqueItemsWithCounts([]);
         setTotal(0);
         toast.success("Order Placed Successfully!!");
+        router.push("/my-orders");
       }
     } catch (error) {
       console.log(error);
       toast.error("Error placing order please ty again later");
     } finally {
       setLoading(false);
-      router.push("/my-orders");
     }
   };
 
