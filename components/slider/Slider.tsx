@@ -6,7 +6,7 @@ import { Carousel } from "flowbite-react";
 export function Slider() {
   return (
     <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 z-10">
-      <Carousel leftControl={""} rightControl={""} slideInterval={10000}>
+      <Carousel slideInterval={5000}>
         <div
           className={cn(
             "w-full h-full flex flex-col items-center justify-center text-center p-2 bg-gray-200",
@@ -32,7 +32,7 @@ export function Slider() {
             "lg:p-5"
           )}
         >
-          <q className={cn("text-xs", "sm:text-lg", "lg:text-2xl")}>
+          <q className={cn("textxs", "sm:text-lg", "lg:text-2xl")}>
             ...OMG! The wings and burger are delicious. On my next visit, I will
             try the noodles.
           </q>

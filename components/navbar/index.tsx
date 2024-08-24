@@ -4,6 +4,7 @@
 import { Dropdown } from "flowbite-react";
 
 import {
+  BadgeInfo,
   Home,
   LogOut,
   Menu,
@@ -106,7 +107,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/blogs"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <Star size={20} />
@@ -115,12 +116,23 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/testimonals"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <MessageSquareCode size={20} />
                   <span className="flex-1 ms-3 whitespace-nowrap">
                     Testimonals
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <BadgeInfo size={20} />
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    About Us
                   </span>
                 </Link>
               </li>

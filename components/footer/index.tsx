@@ -6,6 +6,7 @@ import InstagramIcon from "@/public/svg/instagram-svgrepo-com.svg";
 import TwitterIcon from "@/public/svg/twitter-svgrepo-com.svg";
 import YoutubeIcon from "@/public/svg/youtube-circle-logo-svgrepo-com.svg";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const PageFooter = () => {
   const path = usePathname();
@@ -37,14 +38,14 @@ const PageFooter = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <Link href="/menu" className="hover:underline">
                     Menu
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline">
+                  <Link href="/order-online" className="hover:underline">
                     Order Online
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -54,14 +55,14 @@ const PageFooter = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline ">
+                  <Link href="#" className="hover:underline ">
                     Youtube
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline">
+                  <Link href="#" className="hover:underline">
                     Instagram
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -71,14 +72,14 @@ const PageFooter = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Testimonals
-                  </a>
+                  <Link href="/testimonals" className="hover:underline">
+                    Reviews
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline">
-                    Reviews
-                  </a>
+                  <Link href="/blogs" className="hover:underline">
+                    Blogs
+                  </Link>
                 </li>
               </ul>
             </div>
