@@ -56,9 +56,9 @@ export default function RootLayout({
           <AppContextProvider>
             <Navbar />
             <main>
-              <div className="w-full hidden md:flex items-center md:space-x-8 lg:space-x-16 justify-center mt-3 mb-5">
+              <div className="w-full hidden sm:flex sm:space-x-4 md:flex items-center md:space-x-8 lg:space-x-16 justify-center mt-3 mb-5">
                 <Link
-                  className={`md:text-sm lg:text-xl font-bold ${
+                  className={`sm:text-xs md:text-sm lg:text-xl font-bold ${
                     path === "/"
                       ? "text-blue-500 underline underline-offset-4"
                       : ""
@@ -68,7 +68,7 @@ export default function RootLayout({
                   HOME
                 </Link>
                 <Link
-                  className={`md:text-sm lg:text-xl font-bold ${
+                  className={`sm:text-xs md:text-sm lg:text-xl font-bold ${
                     path === "/menu"
                       ? "text-blue-500 underline underline-offset-4"
                       : ""
@@ -78,7 +78,7 @@ export default function RootLayout({
                   MENU
                 </Link>
                 <Link
-                  className={`md:text-sm lg:text-xl font-bold ${
+                  className={`sm:text-xs md:text-sm lg:text-xl font-bold ${
                     path === "/order-online"
                       ? "text-blue-500 underline underline-offset-4"
                       : ""
@@ -88,7 +88,7 @@ export default function RootLayout({
                   ORDER ONLINE
                 </Link>
                 <Link
-                  className={`md:text-sm lg:text-xl font-bold ${
+                  className={`sm:text-xs md:text-sm lg:text-xl font-bold ${
                     path === "/blogs"
                       ? "text-blue-500 underline underline-offset-4"
                       : ""
@@ -98,7 +98,7 @@ export default function RootLayout({
                   BLOGS
                 </Link>
                 <Link
-                  className={`md:text-sm lg:text-xl font-bold ${
+                  className={`sm:text-xs md:text-sm lg:text-xl font-bold ${
                     path === "/about"
                       ? "text-blue-500 underline underline-offset-4"
                       : ""
@@ -108,7 +108,7 @@ export default function RootLayout({
                   ABOUT US
                 </Link>
                 <Link
-                  className={`md:text-sm lg:text-xl font-bold ${
+                  className={`sm:text-xs md:text-sm lg:text-xl font-bold ${
                     path === "/testimonals"
                       ? "text-blue-500 underline underline-offset-4"
                       : ""

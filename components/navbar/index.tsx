@@ -27,7 +27,7 @@ const Navbar = () => {
   const { data, status } = useSession();
   const router = useRouter();
   return (
-    <div className="w-full px-2 flex md:grid md:grid-cols-4 md:px-6 py-3">
+    <div className="w-full px-2 flex sm:grid sm:grid-cols-4 sm:px-4 sm:py-3 md:grid md:grid-cols-4 md:px-6 py-3">
       <div className="w-full flex items-center justify-start sm:hidden">
         <button
           data-drawer-target="drawer-navigation"
@@ -155,15 +155,15 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="hidden md:w-full md:flex md:space-x-2 md:items-center md:col-span-1 xl:space-x-4">
-        <div className="flex md:w-8 md:h-8 lg:w-12 lg:h-12 items-center justify-center bg-black text-white rounded-full xl:p-3">
+      <div className="hidden sm:w-full sm:flex sm:space-x-2 sm:items-center sm:col-span-1 md:w-full md:flex md:space-x-2 md:items-center md:col-span-1 xl:space-x-4">
+        <div className="flex sm:w-8 sm:h-8 md:w-8 md:h-8 lg:w-12 lg:h-12 items-center justify-center bg-black text-white rounded-full xl:p-3">
           <Phone size={20} />
         </div>
-        <p className="font-bold md:text-sm lg:text-2xl xl:text-2xl">
+        <p className="font-bold sm:text-xs md:text-sm lg:text-2xl xl:text-2xl">
           +1 3142609407
         </p>
       </div>
-      <div className="w-full flex items-center justify-center md:col-span-2">
+      <div className="w-full flex items-center justify-center sm:col-span-2 md:col-span-2">
         <div className="h-20 w-20 items-center justify-center rounded-full lg:h-36 lg:w-36 xl:w-48 xl:flex xl:h-48 xl:col-span-2">
           <img
             src={"/images/assets/logo.png"}
@@ -321,7 +321,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
-      <div className="hidden justify-end items-center md:flex md:space-x-4 md:col-span-1">
+      <div className="hidden justify-end items-center sm:flex sm:space-x-2 sm:col-span-1 md:flex md:space-x-4 md:col-span-1">
         {/* <button className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 ">
           <Search size={20} />
         </button>
@@ -349,82 +349,6 @@ const Navbar = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : status === "authenticated" ? (
-          // <>
-          //   <button
-          //     type="button"
-          //     id="avatarButton"
-          //     data-dropdown-toggle="userDropdown"
-          //     data-dropdown-placement="bottom-start"
-          //     className="md:w-10 md:h-10 w-12 h-12 rounded-full cursor-pointer"
-          //     style={{
-          //       backgroundImage: `url(${
-          //         data.user?.image || "/images/profiles/default-profile.jpg"
-          //       })`,
-          //       backgroundSize: "cover", // Ensures the image covers the entire button
-          //       backgroundPosition: "center", // Centers the image within the button
-          //       backgroundRepeat: "no-repeat", // Prevents the image from repeating
-          //     }}
-          //   >
-          //     {/* <img
-          //       // type="button"
-          //       data-dropdown-toggle="userDropdownMobile"
-          //       data-dropdown-placement="bottom-start"
-          //       className="w-full h-full rounded-full cursor-pointer"
-          //       src={data.user?.image || "/images/profiles/default-profile.jpg"}
-          //       alt="User dropdown"
-          //     /> */}
-          //   </button>
-
-          //   <div
-          //     id="userDropdown"
-          //     className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-          //   >
-          //     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-          //       <div>{data.user?.name}</div>
-          //       <div className="font-medium truncate">{data.user?.email}</div>
-          //     </div>
-          //     <ul
-          //       className="py-2 text-sm text-gray-700 dark:text-gray-200"
-          //       aria-labelledby="avatarButton"
-          //     >
-          //       <li>
-          //         <a
-          //           href="#"
-          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          //         >
-          //           Orders
-          //         </a>
-          //       </li>
-          //       <li>
-          //         <a
-          //           href="#"
-          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          //         >
-          //           Settings
-          //         </a>
-          //       </li>
-          //       <li>
-          //         <a
-          //           href="#"
-          //           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          //         >
-          //           Refer
-          //         </a>
-          //       </li>
-          //     </ul>
-          //     <div className="py-1">
-          //       <a
-          //         onClick={() => {
-          //           signOut();
-          //         }}
-          //         type="button"
-          //         className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-          //       >
-          //         Sign out
-          //       </a>
-          //     </div>
-          //   </div>
-          // </>
           <Dropdown
             className="w-60 !-left-6 rounded-md"
             renderTrigger={() => (
@@ -469,7 +393,7 @@ const Navbar = () => {
             onClick={() => {
               signIn("google");
             }}
-            className="flex items-center justify-center bg-black text-white rounded-full md:p-2 lg:p-3 "
+            className="flex items-center justify-center bg-black text-white rounded-full sm:p-2 md:p-2 lg:p-3 "
           >
             <User size={20} />
           </button>
