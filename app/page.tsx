@@ -1,14 +1,53 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
+"use client";
+import { MakeReservation } from "@/components/make-reservation";
+import { signIn, useSession } from "next-auth/react";
 import { Philosopher } from "next/font/google";
+import { useState } from "react";
+import { makeReservation } from "./actions";
 
 const philosopher = Philosopher({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
 
+interface MakeReservationData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  noOfGuests: string | number;
+  phoneNumber: string;
+  reservationDate: string;
+  reservationTime: string;
+}
+
 export default function Home() {
+  const [open, setOpen] = useState<boolean>(false);
+  const { status } = useSession();
+  const handleClose = () => setOpen(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const handleOpen = () => {
+    if (status === "authenticated") {
+      setOpen(true);
+    } else if (status === "unauthenticated") {
+      signIn("google", { callbackUrl: "/" });
+    }
+  };
+
+  const handleSubmit = async (data: MakeReservationData) => {
+    setLoading(true);
+    console.log(data);
+    try {
+      await makeReservation(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
   return (
     <>
       <div className="p-2 md:p-4 lg:p-8">
@@ -63,7 +102,10 @@ export default function Home() {
               </p>
             </div>
             <div className="w-full flex items-center justify-center mt-1 md:mt-2 lg:mt-4">
-              <button className="text-xs md:text-lg lg:text-2xl font-bold uppercase rounded-full p-1 md:p-2 lg:p-5 bg-white text-black">
+              <button
+                onClick={handleOpen}
+                className="text-xs md:text-lg lg:text-2xl font-bold uppercase rounded-full p-1 md:p-2 lg:p-5 bg-white text-black"
+              >
                 make reservation
               </button>
             </div>
@@ -121,6 +163,12 @@ export default function Home() {
           <img src="/images/assets/buffet.jpg" alt="" />
         </div>
       </div>
+      <MakeReservation
+        loading={loading}
+        handleSubmit={handleSubmit}
+        handleClose={handleClose}
+        open={open}
+      />
     </>
   );
 }

@@ -8,6 +8,7 @@ import User from "@/models/User";
 import Order from "@/models/Orders";
 import { ObjectId } from "mongodb";
 import dbConnect from "@/lib/mongoDb";
+import Reservation from "@/models/Reservation";
 
 const OAuth2 = google.auth.OAuth2;
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -24,6 +25,16 @@ interface UserDetails {
   userName: string;
   userEmail: string;
   userPhoto: string;
+}
+
+interface MakeReservationData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  noOfGuests: string | number;
+  phoneNumber: string;
+  reservationDate: string;
+  reservationTime: string;
 }
 
 export async function sendNewUserMail(userDetails: UserDetails) {
@@ -429,3 +440,132 @@ export const getMyOrders = async (
   }
 };
 
+export async function makeReservation(params: MakeReservationData) {
+  try {
+    await dbConnect();
+    const reservation = new Reservation(params);
+    await reservation.save();
+    console.log("Reservation made successfully");
+
+    await sendReservationMail(params);
+  } catch (error) {
+    console.error("Error making reservation:", error);
+    throw error;
+  }
+}
+
+export async function sendReservationMail(
+  reservationData: MakeReservationData
+) {
+  try {
+    const accessToken = await oauth2Client.getAccessToken();
+    const transport = nodemailer.createTransport({
+      tls: {
+        rejectUnauthorized: false,
+      },
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "thefoodg4@gmail.com",
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken.token,
+      },
+    } as nodemailer.TransportOptions);
+    const {
+      email,
+      firstName,
+      lastName,
+      phoneNumber,
+      reservationDate,
+      reservationTime,
+    } = reservationData;
+
+    const templateSource = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservation Confirmation</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f9f9f9;
+    "
+  >
+    <div
+      class="container"
+      style="
+        width: 100%;
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      "
+    >
+      <div class="header" style="text-align: center">
+        <img
+          src="{{logoUrl}}"
+          alt="Brand Logo"
+          class="logo"
+          style="max-width: 100px; margin-bottom: 20px"
+        />
+      </div>
+      <div class="content" style="margin: 20px 0; text-align: center">
+        <p>Thank you for making a reservation!</p>
+      </div>
+      <div class="details" style="text-align: left; margin-bottom: 20px">
+        <p style="margin: 5px 0"><strong>Name:</strong> {{firstName}} {{lastName}}</p>
+        <p style="margin: 5px 0"><strong>Email:</strong> {{email}}</p>
+        <p style="margin: 5px 0"><strong>Phone Number:</strong> {{phoneNumber}}</p>
+        <p style="margin: 5px 0"><strong>Reservation Date:</strong> {{reservationDate}}</p>
+        <p style="margin: 5px 0"><strong>Reservation Time:</strong> {{reservationTime}}</p>
+      </div>
+    </div>
+  </body>
+</html>
+`;
+    const template = Handlebars.compile(templateSource);
+    const emailHtml = template({
+      logoUrl: "https://www.thefood-gallery.com/images/assets/logo.png",
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      reservationDate,
+      reservationTime,
+    });
+    const mailToCustomer = {
+      from: `The Food Gallery - thefoodg4@gmail.com `,
+      to: email,
+      subject: "Reservation Confirmation",
+      html: emailHtml,
+    };
+
+    const info: nodemailer.SentMessageInfo = await transport.sendMail(
+      mailToCustomer
+    );
+
+    const mailToRestaurant = {
+      from: `New order by - ${firstName + " " + lastName}`,
+      to: "thefoodg4@gmail.com",
+      subject: `New Reservation Booking by ${email}`,
+      html: emailHtml,
+    };
+    const res: nodemailer.SentMessageInfo = await transport.sendMail(
+      mailToRestaurant
+    );
+    console.log("Reservation Email sent: " + info.response);
+  } catch (error) {
+    console.error(error);
+  }
+}
