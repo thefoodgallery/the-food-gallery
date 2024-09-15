@@ -480,6 +480,7 @@ export async function sendReservationMail(
       phoneNumber,
       reservationDate,
       reservationTime,
+      noOfGuests,
     } = reservationData;
 
     const templateSource = `<!DOCTYPE html>
@@ -529,6 +530,7 @@ export async function sendReservationMail(
         <p style="margin: 5px 0"><strong>Phone Number:</strong> {{phoneNumber}}</p>
         <p style="margin: 5px 0"><strong>Reservation Date:</strong> {{reservationDate}}</p>
         <p style="margin: 5px 0"><strong>Reservation Time:</strong> {{reservationTime}}</p>
+        <p style="margin: 5px 0"><strong>No of Guests:</strong> {{noOfGuests}}</p>
       </div>
     </div>
   </body>
@@ -543,6 +545,7 @@ export async function sendReservationMail(
       phoneNumber,
       reservationDate,
       reservationTime,
+      noOfGuests,
     });
     const mailToCustomer = {
       from: `The Food Gallery - thefoodg4@gmail.com `,
