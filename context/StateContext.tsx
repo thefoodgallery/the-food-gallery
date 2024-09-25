@@ -5,7 +5,6 @@ import {
   ReactNode,
   useCallback,
 } from "react";
-
 interface FoodOptions {
   name: string;
   price: number;

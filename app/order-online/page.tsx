@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useStateContext } from "@/context/StateContext";
+import useIsRestaurantOpen from "@/hooks/useIsRestaurantOpen";
 import { constants } from "@/util/constants";
 import { Minus, Plus } from "lucide-react";
 import React, { Fragment, useCallback } from "react";
@@ -19,7 +20,8 @@ const MenuPage = () => {
   const [search, setSearch] = React.useState("");
   const { selectedFood, handleRemoveItem, handleSelectFood } =
     useStateContext();
-
+  const isRestaurantActive = useIsRestaurantOpen();
+  // console.log(isRestaurantActive);
   const filteredMenu = constants.menu.map((category) => {
     const items = category.items.filter((item) =>
       item.name.toLowerCase().includes(search.toLowerCase())
@@ -100,10 +102,11 @@ const MenuPage = () => {
                               </div>
                             ) : (
                               <button
+                                disabled={!isRestaurantActive}
                                 onClick={() => {
                                   handleSelectFood(item);
                                 }}
-                                className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
+                                className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center disabled:opacity-50 disabled:cursor-not-allowed"
                               >
                                 Add to cart
                               </button>

@@ -8,6 +8,8 @@ import { getSession, signIn, useSession } from "next-auth/react";
 import { placeOrder } from "../actions";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import useIsRestaurantOpen from "@/hooks/useIsRestaurantOpen";
+import Link from "next/link";
 
 interface FoodItem {
   name: string;
@@ -23,7 +25,8 @@ export default function MenuPageLayour({
   const router = useRouter();
   const { data, status } = useSession();
   const { selectedFood, setSelectedFood } = useStateContext();
-
+  const isRestaurantActive = useIsRestaurantOpen();
+  // console.log(isRestaurantActive);
   const [uniqueItemsWithCounts, setUniqueItemsWithCounts] = useState<
     (FoodItem & { count: number })[]
   >([]);
@@ -118,11 +121,30 @@ export default function MenuPageLayour({
 
   return (
     <main>
+      {!!isRestaurantActive && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex flex-col items-center justify-center z-50 backdrop-blur-sm">
+          <h1 className="text-4xl md:text-6xl font-bold text-orange-500 text-center drop-shadow-lg">
+            Sorry, We Are Currently Closed!
+          </h1>
+          <p className="mt-4 text-lg md:text-2xl text-yellow-400 text-center animate-pulse">
+            We’ll be open soon. Check our operating hours and visit us again!
+          </p>
+
+          <Link
+            href="/"
+            className="mt-6 px-6 py-3  bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out"
+          >
+            Go Back to Home
+          </Link>
+        </div>
+      )}
+
       {children}
       <>
         <div className="flex min-h-[30vh] sticky bottom-0 items-center justify-center">
           <button
-            className="bg-black text-white items-center flex justify-center space-x-2 hover:bg-black px-3 py-2 rounded-md"
+            disabled={!isRestaurantActive}
+            className="bg-black text-white items-center flex justify-center space-x-2 hover:bg-black px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setIsOpen(true)}
           >
             <LogOut size={20} />
@@ -188,9 +210,10 @@ export default function MenuPageLayour({
             </div>
             <div className="flex w-full items-center justify-center pb-1 pt-3">
               <button
+                disabled={!isRestaurantActive}
                 onClick={handlePlaceOrder}
                 type="button"
-                className="flex items-center justify-center space-x-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                className="flex items-center justify-center space-x-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Soup size={20} /> <p>Place Order</p>{" "}
                 {loading && (
