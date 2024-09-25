@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import moment from "moment-timezone";
 
 const useIsRestaurantOpen = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     const checkIfOpen = () => {
