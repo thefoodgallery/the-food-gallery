@@ -6,8 +6,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/veggebowl.jpeg",
+              alt: "vegetablebowl",
             },
           ],
           name: "Vegetable Bowl",
@@ -16,8 +16,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/spicysaucagebowl.jpeg",
+              alt: "spicysausage",
             },
           ],
           name: "Spicy Sausage Bowl",
@@ -26,8 +26,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/chickenbowl.jpeg",
+              alt: "chickenbowl",
             },
           ],
           name: "Chicken Bowl",
@@ -36,8 +36,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/bowlcrablamb.jpg",
-              alt: "lamb",
+              src: "/images/assets/lambchopbowl.jpeg",
+              alt: "lamchopbowl",
             },
           ],
           name: "Lamb Chop Bowl",
@@ -46,8 +46,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/seafoodbowl.jpeg",
+              alt: "seafoodbowl",
             },
           ],
           name: "Seafood Bowl",
@@ -56,8 +56,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/gallerybowl.jpeg",
+              alt: "gallerybowl",
             },
           ],
           name: "The 'Gallery' Bowl",
@@ -94,7 +94,7 @@ export const constants = {
           images: [
             {
               src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              alt: "polish",
             },
           ],
           name: "Polish",
@@ -104,7 +104,7 @@ export const constants = {
           images: [
             {
               src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              alt: "spicysausage",
             },
           ],
           name: "Spicy Sausage",
@@ -119,8 +119,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/6piecewings.jpeg",
+              alt: "6piecewings",
             },
           ],
           name: "6 Piece Wings",
@@ -129,8 +129,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/10piecewings.jpeg",
+              alt: "10piecewings",
             },
           ],
           name: "10 Piece Wings",
@@ -151,8 +151,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/blackbeanburger.jpeg",
+              alt: "blackbeanburger",
             },
           ],
           name: "Black Bean Burger",
@@ -161,8 +161,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/cheeseburger.jpeg",
+              alt: "cheeseburger",
             },
           ],
           name: "Cheeseburger",
@@ -171,8 +171,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/turkeyburger.jpeg",
+              alt: "turkyburger",
             },
           ],
           name: "Turkey Burger",
@@ -181,8 +181,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/galleryburger.jpeg",
+              alt: "galleryburger",
             },
           ],
           name: "The 'Gallery' Burger",
@@ -198,7 +198,7 @@ export const constants = {
           images: [
             {
               src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              alt: "fries",
             },
           ],
           name: "Fries",
@@ -207,8 +207,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/sweetpotatofries.jpeg",
+              alt: "sweetpotato",
             },
           ],
           name: "Sweet Potato Fries",
@@ -224,7 +224,7 @@ export const constants = {
           images: [
             {
               src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              alt: "cheesecakes",
             },
           ],
           name: "Cheesecake",
@@ -240,7 +240,7 @@ export const constants = {
           images: [
             {
               src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              alt: "drinks",
             },
           ],
           name: "Water",
@@ -249,8 +249,8 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
-              alt: "lamb",
+              src: "/images/assets/drinks.webp",
+              alt: "drinks",
             },
           ],
           name: "Bottle Drinks",
