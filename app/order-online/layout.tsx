@@ -121,7 +121,7 @@ export default function MenuPageLayour({
 
   return (
     <main>
-      {!!isRestaurantActive && (
+      {!isRestaurantActive && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex flex-col items-center justify-center z-50 backdrop-blur-sm">
           <h1 className="text-4xl md:text-6xl font-bold text-orange-500 text-center drop-shadow-lg">
             Sorry, We Are Currently Closed!
