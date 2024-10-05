@@ -197,7 +197,7 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
+              src: "/images/assets/fries.jpeg",
               alt: "fries",
             },
           ],
@@ -223,7 +223,7 @@ export const constants = {
         {
           images: [
             {
-              src: "/images/assets/dishdefault.png",
+              src: "/images/assets/cheesecake.jpg",
               alt: "cheesecakes",
             },
           ],
