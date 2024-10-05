@@ -170,6 +170,7 @@ interface OrderDetails {
   orderItems: (FoodItem & { count: number })[];
   totalPrice: number | string;
   orderId: string | ObjectId;
+  onlinePaid?: boolean;
 }
 
 export async function sendOrderMail(orderDetails: OrderDetails) {
@@ -191,7 +192,7 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
       },
     } as nodemailer.TransportOptions);
 
-    const { userName, userEmail, orderId, orderItems, totalPrice } =
+    const { userName, userEmail, orderId, orderItems, totalPrice, onlinePaid } =
       orderDetails;
 
     // const templatePath = path.join(
@@ -320,7 +321,9 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
         class="total"
         style="text-align: right; margin-top: 20px; font-weight: bold"
       >
-        <p>Total Price: $ {{totalPrice}}</p>
+        <p>Total Price: $ {{totalPrice}} ${
+          onlinePaid ? "<em>(Paid Online)</em>" : ""
+        }</p>
       </div>
     </div>
   </body>
@@ -365,9 +368,13 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
 interface OrderData {
   items: (FoodItem & { count: number })[];
   email: string;
+  onlinePaid: boolean;
+  paymentData?: any;
 }
 
 export const placeOrder = async (orderData: OrderData) => {
+  // console.log(orderData);
+
   try {
     await dbConnect();
     const user = await User.findOne({ email: orderData.email }).exec();
@@ -384,6 +391,8 @@ export const placeOrder = async (orderData: OrderData) => {
       items: JSON.stringify(orderData.items),
       orderDate: new Date(),
       totalAmount: total,
+      onlinePaid: orderData.onlinePaid,
+      paymentData: JSON.stringify(orderData.paymentData),
     });
 
     const savedOrder = await newOrder.save();
@@ -394,6 +403,7 @@ export const placeOrder = async (orderData: OrderData) => {
       totalPrice: total,
       userEmail: orderData.email,
       userName: user.name,
+      onlinePaid: orderData.onlinePaid,
     });
     // console.log("Order placed successfully:", savedOrder);
   } catch (error) {

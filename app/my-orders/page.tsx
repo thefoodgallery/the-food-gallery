@@ -38,7 +38,7 @@ const MyOrders = () => {
       if (status == "authenticated") {
         setLoading(true);
         const orders = await getMyOrders(data?.user?.email);
-        // console.log(orders);
+        console.log(orders);
         setMyOrders(orders);
         setLoading(false);
       }

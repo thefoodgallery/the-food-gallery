@@ -34,7 +34,7 @@ const useIsRestaurantOpen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return isOpen;
+  return true;
 };
 
 export default useIsRestaurantOpen;
