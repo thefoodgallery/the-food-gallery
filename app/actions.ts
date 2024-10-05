@@ -391,8 +391,8 @@ export const placeOrder = async (orderData: OrderData) => {
       items: JSON.stringify(orderData.items),
       orderDate: new Date(),
       totalAmount: total,
-      onlinePaid: orderData.onlinePaid,
-      paymentData: JSON.stringify(orderData.paymentData),
+      onlinePaid: orderData.onlinePaid || false,
+      paymentData: JSON.stringify(orderData?.paymentData) || null,
     });
 
     const savedOrder = await newOrder.save();

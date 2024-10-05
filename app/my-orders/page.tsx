@@ -26,6 +26,8 @@ const MyOrders = () => {
     items: OrderItem[];
     totalAmount: number;
     orderDate: string;
+    onlinePaid?: boolean | null;
+    paymentData?: string | null;
     __v: number;
   }
 
@@ -85,10 +87,16 @@ const MyOrders = () => {
                 key={order.__v}
                 className="w-full text-xs md:text-lg font-bold flex items-center justify-start p-4"
               >
-                Order Placed -{" "}
+                Order Placed - &nbsp;
                 {moment(order.orderDate)
                   .tz(moment.tz.guess())
                   .format("MMMM Do YYYY, h:mm:ss a")}
+                &nbsp;
+                {order?.onlinePaid && (
+                  <em className="text-green-500 font-semibold">
+                    -&nbsp;Paid Online
+                  </em>
+                )}
               </div>
               <div key={order._id} className="block p-1 md:px-6 mb-4">
                 {order.items.map((item, index) => (
