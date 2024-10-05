@@ -238,7 +238,7 @@ export default function MenuPageLayour({
               </div>
             </div>
             <div className="flex w-full items-center justify-center space-x-3 pb-1 pt-3">
-              <button
+              {/* <button
                 disabled={!isRestaurantActive}
                 onClick={() => handlePlaceOrder(false)}
                 type="button"
@@ -264,7 +264,7 @@ export default function MenuPageLayour({
                     />
                   </svg>
                 )}
-              </button>
+              </button> */}
               <button
                 disabled={!isRestaurantActive}
                 onClick={() => handlePlaceOrder(true)}
