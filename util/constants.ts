@@ -36,6 +36,16 @@ export const constants = {
         {
           images: [
             {
+              src: "/images/assets/shrimpbowl.jpg",
+              alt: "shrmpbowl",
+            },
+          ],
+          name: "Shrimp Bowl",
+          price: 20.99,
+        },
+        {
+          images: [
+            {
               src: "/images/assets/lambchopbowl.jpeg",
               alt: "lamchopbowl",
             },
@@ -98,7 +108,7 @@ export const constants = {
             },
           ],
           name: "Polish",
-          price: 8.99,
+          price: 9.99,
         },
         {
           images: [
@@ -107,8 +117,8 @@ export const constants = {
               alt: "spicysausage",
             },
           ],
-          name: "Spicy Sausage",
-          price: 8.99,
+          name: "Spicy Polish",
+          price: 9.99,
         },
       ],
       options: [],
@@ -123,8 +133,8 @@ export const constants = {
               alt: "6piecewings",
             },
           ],
-          name: "6 Piece Wings",
-          price: 9.99,
+          name: "8 Piece Wings",
+          price: 11.99,
         },
         {
           images: [
@@ -133,8 +143,18 @@ export const constants = {
               alt: "10piecewings",
             },
           ],
-          name: "10 Piece Wings",
-          price: 13.99,
+          name: "12 Piece Wings",
+          price: 14.99,
+        },
+        {
+          images: [
+            {
+              src: "/images/assets/friedcauliflower.jpg",
+              alt: "spicysausage",
+            },
+          ],
+          name: "Fried Cauliflower",
+          price: 12.99,
         },
       ],
       options: [
@@ -156,7 +176,7 @@ export const constants = {
             },
           ],
           name: "Black Bean Burger",
-          price: 9.99,
+          price: 10.99,
         },
         {
           images: [
@@ -166,18 +186,18 @@ export const constants = {
             },
           ],
           name: "Cheeseburger",
-          price: 10.99,
+          price: 11.99,
         },
-        {
-          images: [
-            {
-              src: "/images/assets/turkeyburger.jpeg",
-              alt: "turkyburger",
-            },
-          ],
-          name: "Turkey Burger",
-          price: 10.99,
-        },
+        // {
+        //   images: [
+        //     {
+        //       src: "/images/assets/turkeyburger.jpeg",
+        //       alt: "turkyburger",
+        //     },
+        //   ],
+        //   name: "Turkey Burger",
+        //   price: 10.99,
+        // },
         {
           images: [
             {
@@ -186,7 +206,7 @@ export const constants = {
             },
           ],
           name: "The 'Gallery' Burger",
-          price: 12.99,
+          price: 14.99,
         },
       ],
       options: [],
@@ -204,16 +224,16 @@ export const constants = {
           name: "Fries",
           price: 4.99,
         },
-        {
-          images: [
-            {
-              src: "/images/assets/sweetpotatofries.jpeg",
-              alt: "sweetpotato",
-            },
-          ],
-          name: "Sweet Potato Fries",
-          price: 5.99,
-        },
+        // {
+        //   images: [
+        //     {
+        //       src: "/images/assets/sweetpotatofries.jpeg",
+        //       alt: "sweetpotato",
+        //     },
+        //   ],
+        //   name: "Sweet Potato Fries",
+        //   price: 5.99,
+        // },
       ],
       options: [],
     },

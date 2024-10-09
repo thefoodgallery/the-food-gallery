@@ -21,13 +21,13 @@ const Blogs = () => {
           <p>Our Timings</p> <Calendar size={20} />
         </div>
         <div className="w-full bg-gray-200 rounded-md p-2 sm:p-3 md:p-4 lg:p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2">
-          <p className={"font-semibold"}>Saturday, 11 am–8 pm</p>
-          <p className={"font-semibold"}>Sunday, 11 am–6 pm</p>
           <p className={"font-semibold opacity-50 "}>Monday, Closed</p>
           <p className={"font-semibold opacity-50"}>Tuesday, Closed</p>
           <p className={"font-semibold "}>Wednesday, 11 am–7 pm</p>
           <p className={"font-semibold "}>Thursday, 11 am–7 pm</p>
           <p className={"font-semibold "}>Friday, 11 am–8 pm</p>
+          <p className={"font-semibold"}>Saturday, 11 am–8 pm</p>
+          <p className={"font-semibold"}>Sunday, 11 am–6 pm</p>
         </div>
       </div>
     </>
