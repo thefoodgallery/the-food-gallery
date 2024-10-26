@@ -148,6 +148,25 @@ export default function MenuPageLayour({
     router.push("/my-orders");
   };
 
+  const handleOpenCheckOut = () => {
+    // console.log(selectedFood);
+    if (selectedFood.length > 0) {
+      setIsOpen(true);
+    } else {
+      toast.error("Please select some items to checkout");
+    }
+  };
+
+  const handleCheckoutDrawerOpen = () => {
+    if (uniqueItemsWithCounts.length > 0 && !isOpen) {
+      setIsOpen(true);
+    } else if (uniqueItemsWithCounts.length > 0 && isOpen) {
+      setIsOpen(false);
+    } else {
+      toast.error("Please select some items to checkout");
+    }
+  };
+
   return (
     <main>
       {!isRestaurantActive && (
@@ -170,16 +189,16 @@ export default function MenuPageLayour({
 
       {children}
       <>
-        <div className="flex min-h-[30vh] sticky bottom-0 items-center justify-center">
+        {/* <div className="flex min-h-[30vh] sticky bottom-0 items-center justify-center">
           <button
             disabled={!isRestaurantActive}
             className="bg-black text-white items-center flex justify-center space-x-2 hover:bg-black px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={() => setIsOpen(true)}
+            onClick={handleOpenCheckOut}
           >
             <LogOut size={20} />
             <p>Checkout</p>
           </button>
-        </div>
+        </div> */}
         <Drawer
           edge
           open={isOpen}
@@ -191,9 +210,13 @@ export default function MenuPageLayour({
             closeIcon={() => {
               return isOpen ? <ChevronDown /> : <ChevronUp />;
             }}
-            title={`Total: $${total}`}
+            title={`Total: $${total} ${
+              !isOpen && selectedFood.length > 0
+                ? "Click here to checkout!!"
+                : ""
+            }`}
             titleIcon={() => <Receipt />}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleCheckoutDrawerOpen}
             className="cursor-pointer mb-0 px-4 pt-4 bg-gray-50 rounded-t-md hover:bg-gray-100 border-2 border-gray-200"
           />
           <Drawer.Items className="px-4 pt-4 pb-0 rounded-t-md">

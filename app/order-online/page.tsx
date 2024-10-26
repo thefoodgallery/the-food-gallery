@@ -2,6 +2,7 @@
 "use client";
 import { useStateContext } from "@/context/StateContext";
 import useIsRestaurantOpen from "@/hooks/useIsRestaurantOpen";
+import cn from "@/util/cn";
 import { constants } from "@/util/constants";
 import { Minus, Plus } from "lucide-react";
 import React, { Fragment, useCallback } from "react";
@@ -21,8 +22,18 @@ const MenuPage = () => {
   const { selectedFood, handleRemoveItem, handleSelectFood } =
     useStateContext();
   const isRestaurantActive = useIsRestaurantOpen();
+  const categories = constants.menu.map((category) => category.category);
+  const [selected, setSelected] = React.useState<string | null>(null);
+  // console.log(selected);
   // console.log(isRestaurantActive);
-  const filteredMenu = constants.menu.map((category) => {
+
+  const categoryFiltertedMenu = selected
+    ? constants.menu.filter((category) => category.category === selected)
+    : constants.menu;
+
+  // console.log(categoryFiltertedMenu);
+
+  const filteredMenu = categoryFiltertedMenu.map((category) => {
     const items = category.items.filter((item) =>
       item.name.toLowerCase().includes(search.toLowerCase())
     );
@@ -39,6 +50,33 @@ const MenuPage = () => {
           className="md:w-2/3 w-full rounded-md"
           placeholder="Ramen Bowls, Spicy Sausage Bowl, Polish, Spicy Sausage....."
         />
+      </div>
+      <div className="w-full sticky top-0 p-3 flex items-center justify-start sm:justify-center overflow-x-auto space-x-3">
+        {categories.map((category, i) => {
+          return (
+            <div
+              onClick={() =>
+                setSelected(selected === category ? null : category)
+              }
+              style={{
+                backgroundImage: `url("/category/${category}.jpg")`,
+                backgroundSize: "100% 100%", // Stretching the background image to cover the div
+                backgroundPosition: "center",
+                backgroundColor: "rgba(0, 0, 0, 0.5)", // Adding background color with opacity
+                backgroundBlendMode: "overlay", // Blending the background image with the color
+                userSelect: "none", // Disabling text selection
+              }}
+              key={i}
+              className={cn(
+                "cursor-pointer leading-[20px]",
+                "p-2 border border-gray-200 rounded-lg h-14 min-w-14 w-14 text-[10px] flex items-end justify-center md:text-base lg:h-36 lg:w-28 md:h-32 md:w-28 sm:h-20 sm:w-20 sm:text-start text-center sm:items-end sm:justify-start text-white font-extrabold",
+                selected === category ? "border-4 border-blue-500" : ""
+              )}
+            >
+              {category}
+            </div>
+          );
+        })}
       </div>
       <div className="w-full">
         {filteredMenu.map((category, i) => {
