@@ -20,7 +20,6 @@ const AdminPanel = () => {
   const { data, status } = useSession();
   const router = useRouter();
   const [openNewCategoryModal, setOpenNewCategoryModal] = React.useState(false);
-  const handleCloseNewCategoryModal = () => setOpenNewCategoryModal(false);
   const handleOpenNewCategoryModal = () => setOpenNewCategoryModal(true);
   const [searchCategories, setSearchCategories] = React.useState("");
   const [categoriesActivateLoading, setCategoriesActivateLoading] =
@@ -31,6 +30,10 @@ const AdminPanel = () => {
   const handleUpdateCategory = (category: ICategories) => {
     setTheCategory(category);
     handleOpenNewCategoryModal();
+  };
+  const handleCloseNewCategoryModal = () => {
+    setTheCategory(null);
+    setOpenNewCategoryModal(false);
   };
 
   const handleRefreshCategories = async () => {
