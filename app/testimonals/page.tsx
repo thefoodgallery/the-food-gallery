@@ -1,5 +1,5 @@
 import { Slider } from "@/components/slider/Slider";
-import cn from "@/util/cn";
+import cn from "@/utils/cn";
 import React from "react";
 
 const Testimonals = () => {

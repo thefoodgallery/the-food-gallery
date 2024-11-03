@@ -11,6 +11,7 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.6.0",
+    "@supabase/supabase-js": "^2.46.1",
     "clsx": "^2.1.1",
     "flowbite": "^2.4.1",
     "flowbite-react": "^0.10.1",

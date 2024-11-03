@@ -1,6 +1,6 @@
 "use client";
-import cn from "@/util/cn";
-import { constants } from "@/util/constants";
+import cn from "@/utils/cn";
+import { constants } from "@/utils/constants";
 import React from "react";
 
 const Order = () => {

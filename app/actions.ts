@@ -1,7 +1,6 @@
 "use server";
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
-// import { promises as fs } from "fs";
 import Handlebars from "handlebars";
 import { FoodItem } from "@/context/StateContext";
 import User from "@/models/User";
@@ -9,7 +8,6 @@ import Order from "@/models/Orders";
 import { ObjectId } from "mongodb";
 import dbConnect from "@/lib/mongoDb";
 import Reservation from "@/models/Reservation";
-import Category from "@/models/Category";
 
 const OAuth2 = google.auth.OAuth2;
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -595,63 +593,5 @@ export async function getUserInfo(email: string) {
   } catch (error) {
     console.error("Error fetching user info:", error);
     throw error;
-  }
-}
-
-// category crud ops
-
-export async function addNewCategory(name: string) {
-  try {
-    await dbConnect();
-    const category = new Category({ name, status: "active" });
-    await category.save();
-    // console.log("Category added successfully");
-  } catch (error) {
-    console.error("Error adding category:", error);
-    throw error;
-  }
-}
-
-export async function getCategories() {
-  try {
-    await dbConnect();
-    const categories = await Category.find({}).sort({ name: 1 }).exec();
-    return categories.map((category) => category.toObject());
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    throw error;
-  }
-}
-
-export async function deactivateCategory(categoryId: string, status: string) {
-  try {
-    await dbConnect();
-    const category = await Category.findById(categoryId).exec();
-    if (!category) {
-      throw new Error("Category not found");
-    }
-    category.status = status;
-    await category.save();
-    // console.log("Category deactivated successfully");
-    return category.toObject();
-  } catch (error) {
-    console.error("Error deactivating category:", error);
-    return null;
-  }
-}
-export async function updateCategoryName(categoryId: string, name: string) {
-  try {
-    await dbConnect();
-    const category = await Category.findById(categoryId).exec();
-    if (!category) {
-      throw new Error("Category not found");
-    }
-    category.name = name;
-    await category.save();
-    // console.log("Category updated successfully");
-    return category.toObject();
-  } catch (error) {
-    console.error("Error updating category:", error);
-    return null;
   }
 }

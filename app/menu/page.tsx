@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useStateContext } from "@/context/StateContext";
-import { constants } from "@/util/constants";
-import { Minus, Plus } from "lucide-react";
+import { constants } from "@/utils/constants";
 import React, { Fragment, useCallback } from "react";
 interface FoodOptions {
   name: string;

@@ -2,8 +2,8 @@
 "use client";
 import { useStateContext } from "@/context/StateContext";
 import useIsRestaurantOpen from "@/hooks/useIsRestaurantOpen";
-import cn from "@/util/cn";
-import { constants } from "@/util/constants";
+import cn from "@/utils/cn";
+import { constants } from "@/utils/constants";
 import { Minus, Plus } from "lucide-react";
 import React, { Fragment, useCallback } from "react";
 interface FoodOptions {

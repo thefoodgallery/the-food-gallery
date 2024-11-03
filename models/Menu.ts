@@ -1,27 +1,26 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface MenuData extends Document {
   name: string;
-  images: { src: string; alt: string }[];
+  images: string;
   price: number;
-  categoryId: string;
+  categoryId: mongoose.Types.ObjectId;
+  status: "active" | "inactive";
 }
 
 const MenuSchema: Schema = new Schema({
   name: { type: String, required: true },
-  images: [
-    {
-      src: { type: String, required: true },
-      alt: { type: String, required: true },
-    },
-  ],
+  images: { type: String, required: true },
   price: { type: Number, required: true },
   categoryId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
     required: true,
   },
+  status: { type: String, enum: ["active", "inactive"], required: true },
 });
 
-export default mongoose.models.Menu ||
-  mongoose.model<MenuData>("Menu", MenuSchema);
+const Menu: Model<MenuData> =
+  mongoose.models.Menu || mongoose.model<MenuData>("Menu", MenuSchema);
+
+export default Menu;

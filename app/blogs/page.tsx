@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { Caveat } from "next/font/google";
-import cn from "@/util/cn";
+import cn from "@/utils/cn";
 
 const caveat = Caveat({
   subsets: ["latin"],

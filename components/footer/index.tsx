@@ -94,7 +94,7 @@ const PageFooter = () => {
             </a>
             . All Rights Reserved.
           </span>
-          <div className="flex mt-4 sm:justify-center sm:mt-0">
+          <div className="flex mt-4 sm:justify-center sm:mt-0 z-50">
             <a
               href="#"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white h-5 w-5"
