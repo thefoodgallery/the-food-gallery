@@ -33,11 +33,11 @@ export interface IMenu {
 }
 
 const AdminPanel = () => {
-  const [isAdmin, setIsAdmin] = React.useState(false);
-  const admin = useAdminCheck();
-  console.log(admin);
+  // const [isAdmin, setIsAdmin] = React.useState(false);
+  const { isAdmin, isError, isLoading } = useAdminCheck();
+
   const [categories, setCategories] = React.useState<ICategories[]>([]);
-  const { data, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const [openNewCategoryModal, setOpenNewCategoryModal] = React.useState(false);
   const handleOpenNewCategoryModal = () => setOpenNewCategoryModal(true);
@@ -99,37 +99,37 @@ const AdminPanel = () => {
     }
   }, [setMenu, setLoadingMenu]);
 
-  const adminId = process.env.NEXT_PUBLIC_ADMIN_ID;
   useEffect(() => {
     const checkAdmin = async () => {
-      if (status !== "loading" && status === "authenticated" && data.user) {
-        if (data.user?.email) {
-          const res = await getUserInfo(data.user.email);
-          if (res?._id === adminId) {
-            setIsAdmin(true);
-            handleRefreshCategories();
-            handleRefreshMenuItems();
-          } else {
-            toast.error("You are not an admin");
-            router.push("/");
-          }
-        }
-      } else if (status === "loading") {
-        setIsAdmin(false);
+      if (isLoading) {
+        // toast("Checking if you are an admin!", {
+        //   icon: "👀",
+        //   duration: 3000,
+        // });
+        return;
+      }
+
+      if (isError) {
+        // If there was an error, show an error toast and redirect
+
+        toast.error("An error occurred while fetching user info");
+        // setToastShown(false);
+        router.push("/");
+        return;
+      }
+
+      if (isAdmin) {
+        // If the user is an admin, refresh categories and menu items
+        handleRefreshCategories();
+        handleRefreshMenuItems();
       } else {
-        toast.error("You are not authenticated");
+        toast.error("You are not an admin");
         router.push("/");
       }
     };
+
     checkAdmin();
-  }, [
-    data,
-    status,
-    handleRefreshCategories,
-    adminId,
-    router,
-    handleRefreshMenuItems,
-  ]);
+  }, [isAdmin, isLoading, isError]);
 
   const [updateCatId, setUpdateCatId] = React.useState("");
   const handleCategory = useCallback(
@@ -228,7 +228,7 @@ const AdminPanel = () => {
     [setCatId]
   );
 
-  return !isAdmin || status === "loading" ? (
+  return !isAdmin || status === "loading" || isLoading ? (
     <div className="w-full h-[600px] flex items-center justify-center">
       <div className="w-full flex items-center justify-center">
         <Lottie

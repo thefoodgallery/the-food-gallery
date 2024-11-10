@@ -3,13 +3,7 @@
 import { ChevronDown, ChevronUp, LogOut, Receipt, Soup, X } from "lucide-react";
 import React, { useState } from "react";
 import { Drawer } from "flowbite-react";
-import { useStateContext } from "@/context/StateContext";
-
-interface FoodItem {
-  name: string;
-  images: { src: string }[];
-  price: number;
-}
+import { Menu, useStateContext } from "@/context/StateContext";
 
 export default function MenuPageLayour({
   children,
@@ -22,7 +16,7 @@ export default function MenuPageLayour({
       ? { ...acc[item.name], count: acc[item.name].count + 1 }
       : { ...item, count: 1 };
     return acc;
-  }, {} as Record<string, FoodItem & { count: number }>);
+  }, {} as Record<string, Menu & { count: number }>);
 
   const uniqueItemsWithCounts = Object.values(countedItems);
 

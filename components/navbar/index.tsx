@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import useAdminCheck from "@/hooks/useAdminCheck";
 import { Dropdown } from "flowbite-react";
 
 import {
@@ -28,6 +29,7 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const { data, status } = useSession();
   const router = useRouter();
+  const { isAdmin, isError, isLoading } = useAdminCheck();
 
   return (
     <div className="w-full px-2 flex sm:grid sm:grid-cols-4 sm:px-4 sm:py-3 md:grid md:grid-cols-4 md:px-6 py-3">
@@ -392,14 +394,16 @@ const Navbar = () => {
             </Dropdown.Item>
             <Dropdown.Item icon={Settings}>Settings</Dropdown.Item>
             <Dropdown.Item icon={Share2}>Refer</Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                router.push("/admin");
-              }}
-              icon={Shield}
-            >
-              Admin
-            </Dropdown.Item>
+            {isAdmin && (
+              <Dropdown.Item
+                onClick={() => {
+                  router.push("/admin");
+                }}
+                icon={Shield}
+              >
+                Admin
+              </Dropdown.Item>
+            )}
             <Dropdown.Divider />
             <Dropdown.Item
               onClick={() => {
