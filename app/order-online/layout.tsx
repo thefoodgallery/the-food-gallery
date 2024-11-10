@@ -12,6 +12,8 @@ import useIsRestaurantOpen from "@/hooks/useIsRestaurantOpen";
 import Link from "next/link";
 import CheckoutModal from "@/components/checkout-modal";
 import { Session } from "next-auth";
+import loadingAnimation from "@/public/lottie-animations/searching-food.json";
+import Lottie from "lottie-react";
 
 export default function MenuPageLayour({
   children,
@@ -165,6 +167,14 @@ export default function MenuPageLayour({
     <main>
       {!isRestaurantActive && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex flex-col items-center justify-center z-50 backdrop-blur-sm">
+          <div className="w-full h-auto flex items-center justify-center">
+            <Lottie
+              animationData={loadingAnimation}
+              className="h-48 w-48 md:h-96 md:w-96"
+              autoPlay
+              loop
+            />
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold text-orange-500 text-center drop-shadow-lg">
             Sorry, We Are Currently Closed!
           </h1>
