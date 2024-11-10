@@ -2,7 +2,7 @@
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
 import Handlebars from "handlebars";
-import { FoodItem } from "@/context/StateContext";
+import { Menu } from "@/context/StateContext";
 import User from "@/models/User";
 import Order from "@/models/Orders";
 import { ObjectId } from "mongodb";
@@ -166,7 +166,7 @@ export async function sendNewUserMail(userDetails: UserDetails) {
 interface OrderDetails {
   userName: string;
   userEmail: string;
-  orderItems: (FoodItem & { count: number })[];
+  orderItems: (Menu & { count: number })[];
   totalPrice: number | string;
   orderId: string | ObjectId;
   onlinePaid?: boolean;
@@ -365,7 +365,7 @@ export async function sendOrderMail(orderDetails: OrderDetails) {
   }
 }
 interface OrderData {
-  items: (FoodItem & { count: number })[];
+  items: (Menu & { count: number })[];
   email: string;
   onlinePaid: boolean;
   paymentData?: any;

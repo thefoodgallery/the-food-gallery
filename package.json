@@ -18,6 +18,7 @@
     "framer-motion": "^11.3.8",
     "googleapis": "^140.0.1",
     "handlebars": "^4.7.8",
+    "lottie-react": "^2.4.0",
     "lucide-react": "^0.411.0",
     "moment-timezone": "^0.5.45",
     "mongodb": "^6.8.0",

@@ -10,12 +10,14 @@ const NewMenuModal = ({
   menuItem,
   handleRefreshMenuItems,
   categories,
+  catId = "",
 }: {
   openMenuModal: boolean;
   handleCloseMenuModal: () => void;
   handleRefreshMenuItems: () => void;
   menuItem: any;
   categories: ICategories[];
+  catId?: string;
 }) => {
   const [loading, setLoading] = React.useState(false);
   const [name, setName] = React.useState<string>("");
@@ -26,6 +28,9 @@ const NewMenuModal = ({
   const [menu, setMenu] = React.useState<IMenu | null>(null);
 
   useEffect(() => {
+    if (catId) {
+      setCategoryId(catId);
+    }
     if (menuItem) {
       //   console.log(menuItem);
       const imagesData = JSON.parse(menuItem.images);
@@ -37,7 +42,7 @@ const NewMenuModal = ({
       setCategoryId(menuItem.categoryId);
       setPreviewSrc(imageurl);
     }
-  }, [menuItem]);
+  }, [menuItem, catId]);
 
   const handleCreateNewMenu = async () => {
     setLoading(true);
@@ -257,7 +262,11 @@ const NewMenuModal = ({
           >
             {categories.map((cat) => {
               return (
-                <option key={cat._id} value={cat._id}>
+                <option
+                  disabled={cat.status === "inactive"}
+                  key={cat._id}
+                  value={cat._id}
+                >
                   {cat.name}
                 </option>
               );

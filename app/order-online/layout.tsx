@@ -3,7 +3,7 @@
 import { ChevronDown, ChevronUp, LogOut, Receipt, Soup, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Drawer } from "flowbite-react";
-import { useStateContext } from "@/context/StateContext";
+import { Menu, useStateContext } from "@/context/StateContext";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { placeOrder } from "../actions";
 import toast from "react-hot-toast";
@@ -12,12 +12,6 @@ import useIsRestaurantOpen from "@/hooks/useIsRestaurantOpen";
 import Link from "next/link";
 import CheckoutModal from "@/components/checkout-modal";
 import { Session } from "next-auth";
-
-interface FoodItem {
-  name: string;
-  images: { src: string }[];
-  price: number;
-}
 
 export default function MenuPageLayour({
   children,
@@ -33,7 +27,7 @@ export default function MenuPageLayour({
   const handleCheckoutModalOpen = () => setOpenCheckoutModal(true);
   // console.log(isRestaurantActive);
   const [uniqueItemsWithCounts, setUniqueItemsWithCounts] = useState<
-    (FoodItem & { count: number })[]
+    (Menu & { count: number })[]
   >([]);
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
@@ -43,7 +37,7 @@ export default function MenuPageLayour({
     if (typeof window !== "undefined") {
       const stashedItems = localStorage.getItem("order-items");
       if (stashedItems) {
-        const parsedItems: (FoodItem & { count: number })[] =
+        const parsedItems: (Menu & { count: number })[] =
           JSON.parse(stashedItems);
 
         const total = parsedItems
@@ -62,7 +56,7 @@ export default function MenuPageLayour({
             ? { ...acc[item.name], count: acc[item.name].count + 1 }
             : { ...item, count: 1 };
           return acc;
-        }, {} as Record<string, FoodItem & { count: number }>);
+        }, {} as Record<string, Menu & { count: number }>);
 
         if (Object.values(countedItems).length > 0) {
           const total = selectedFood
@@ -221,39 +215,45 @@ export default function MenuPageLayour({
           />
           <Drawer.Items className="px-4 pt-4 pb-0 rounded-t-md">
             <div className="block p-1 md:px-4 max-h-[300px] overflow-auto">
-              {uniqueItemsWithCounts.map((item, index) => (
-                <div
-                  key={index}
-                  className="grid grid-cols-6 items-center justify-center  mb-1 bg-gray-50 rounded-md "
-                >
-                  <div className="col-span-3 flex items-center space-x-2">
-                    <img
-                      className="w-12 h-12 rounded-md"
-                      src={item.images[0].src}
-                      alt="product image"
-                    />
-                    <p className="text-sm md:text-lg max-w-20 overflow-hidden truncate md:w-auto md:overflow-visible font-semibold">
-                      {item.name}
+              {uniqueItemsWithCounts.map((item, index) => {
+                const imagesData = JSON.parse(item.images);
+                const menuImage = imagesData[0].src;
+                const imageurl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${process.env.NEXT_PUBLIC_SUPABASE_BUCKET}/${menuImage}`;
+
+                return (
+                  <div
+                    key={index}
+                    className="grid grid-cols-6 items-center justify-center  mb-1 bg-gray-50 rounded-md "
+                  >
+                    <div className="col-span-3 flex items-center space-x-2">
+                      <img
+                        className="w-12 h-12 rounded-md"
+                        src={imageurl}
+                        alt="product image"
+                      />
+                      <p className="text-sm md:text-lg max-w-20 overflow-hidden truncate md:w-auto md:overflow-visible font-semibold">
+                        {item.name}
+                      </p>
+                    </div>
+                    <p className="text-sm md:text-lg font-semibold col-span-2">
+                      ${item.price}{" "}
+                      <span className="text-gray-400">x{item.count}</span>
                     </p>
+                    <div className="w-full col-span-1 flex items-center justify-start">
+                      <button
+                        onClick={() => {
+                          setSelectedFood(
+                            selectedFood.filter((fd) => fd.name !== item.name)
+                          );
+                        }}
+                        className=" text-white bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-700 font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
+                      >
+                        <X size={15} />
+                      </button>
+                    </div>
                   </div>
-                  <p className="text-sm md:text-lg font-semibold col-span-2">
-                    ${item.price}{" "}
-                    <span className="text-gray-400">x{item.count}</span>
-                  </p>
-                  <div className="w-full col-span-1 flex items-center justify-start">
-                    <button
-                      onClick={() => {
-                        setSelectedFood(
-                          selectedFood.filter((fd) => fd.name !== item.name)
-                        );
-                      }}
-                      className=" text-white bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-700 font-medium rounded-lg text-sm px-2 py-1 md:px-3 md:py-1.5 lg:px-5 lg:py-2.5 text-center"
-                    >
-                      <X size={15} />
-                    </button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
               <div className="flex w-full items-center justify-center p-1 border border-gray-500 rounded-md">
                 <button className="text-sm md:text-lg text-gray-500 ">
                   Total Amount : ${total}

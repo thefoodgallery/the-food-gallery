@@ -5,34 +5,43 @@ import {
   ReactNode,
   useCallback,
 } from "react";
-interface FoodOptions {
+
+export interface Menu {
+  _id: string;
   name: string;
+  images: string; // An array of images
   price: number;
+  categoryId: string;
+  status: string;
+  __v: number;
 }
 
-export interface FoodItem {
+export interface Category {
+  _id: string;
   name: string;
-  images: { src: string }[];
-  price: number;
+  status: string;
+  __v: number;
+  image: string;
+  items: Menu[]; // An array of Menu items
 }
 
 interface MyContextState {
   value: string;
   setValue: (value: string) => void;
-  selectedFood: FoodItem[];
-  setSelectedFood: (value: FoodItem[]) => void;
-  handleRemoveItem: (food: FoodItem) => void;
-  handleSelectFood: (food: FoodItem) => void;
+  selectedFood: Menu[];
+  setSelectedFood: (value: Menu[]) => void;
+  handleRemoveItem: (food: Menu) => void;
+  handleSelectFood: (food: Menu) => void;
 }
 
 const StateContext = createContext<MyContextState | undefined>(undefined);
 
 export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   const [value, setValue] = useState<string>("");
-  const [selectedFood, setSelectedFood] = useState<FoodItem[]>([]);
+  const [selectedFood, setSelectedFood] = useState<Menu[]>([]);
   const handleRemoveItem = useCallback(
-    (food: FoodItem) => {
-      setSelectedFood((prevSelectedFood: FoodItem[]) => {
+    (food: Menu) => {
+      setSelectedFood((prevSelectedFood: Menu[]) => {
         const index = prevSelectedFood.findIndex((fd) => fd.name === food.name);
         if (index !== -1) {
           const newSelectedFood = [...prevSelectedFood];
@@ -46,7 +55,7 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   );
 
   const handleSelectFood = useCallback(
-    (food: FoodItem) => {
+    (food: Menu) => {
       setSelectedFood([...selectedFood, food]);
     },
     [selectedFood, setSelectedFood]
